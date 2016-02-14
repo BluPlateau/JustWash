@@ -85,8 +85,9 @@ jQuery(document).ready(function($){
 	/*
 		Requesting "Car, Service, Sub Service Names & Sub Service Pricing"
 		based on selection using the ID's of each section
-	*/
 
+		Geo location is tracked using "Phonegap GeoLocation" & "Google Latlng API"
+	*/
 	$(document).on("click",".book",function() {
 		var	dynamicCarId					=	localStorage.getItem("dynamicCarId"),
 				dynamicServiceId			=	localStorage.getItem("dynamicServiceId"),
@@ -105,5 +106,30 @@ jQuery(document).ready(function($){
 		localStorage.setItem("dynamicServiceName","Water"),
 		localStorage.setItem("dynamicSubServicePrice","200"),
 		localStorage.setItem("dynamicSubServiceName","Exterior");
+
+		// Getting the user coordinates using "Phonegap Plugin"
+		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+		function onSuccess(position) {
+			var coords = position.coords.latitude + "," + position.coords.longitude;
+			$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords,
+			function(data) {
+				var currentLocation	=	data.results[0].formatted_address;
+				localStorage.setItem("currentLocation",currentLocation);
+				window.location.href="customerdetails.html";
+			});
+		}
+
+		// onError Callback receives a PositionError object
+		function onError(error) {
+		    alert('code: '    + error.code    + '\n' +
+		          'message: ' + error.message + '\n');
+		}
 	});
+
+	// Loading Address Data
+	if ($("#customerdetails").length>0) {
+		var	retrievedLocation		=	localStorage.getItem("currentLocation");
+		$(this).find("input[name='address']").val(retrievedLocation);
+	}
 })
