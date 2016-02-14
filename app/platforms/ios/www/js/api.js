@@ -50,7 +50,6 @@ jQuery(document).ready(function($){
 			$("#services").css("display","none");
 		});
 	}
-																							
 
 	// Requesting Sub Service Data based on selected "Service Type"
 	$(document).on("click",".service-title",function(e) {
@@ -76,10 +75,35 @@ jQuery(document).ready(function($){
 				$("#"+subService).find(".price").text(price);
 				$("#"+subService).find(".sub-service-title").text(subService);
 				$("#"+subService).find(".description-new").text(description);
-				$("#"+subService).find(".checkout").attr("sub-service_id",subServiceId);
+				$("#"+subService).find(".book").attr("sub_service_id",subServiceId);
 			});
 			// Hiding the Sub Services List Template
 			$("#sub-services").css("display","none");
 		});
 	}
+
+	/*
+		Requesting "Car, Service, Sub Service Names & Sub Service Pricing"
+		based on selection using the ID's of each section
+	*/
+
+	$(document).on("click",".book",function() {
+		var	dynamicCarId					=	localStorage.getItem("dynamicCarId"),
+				dynamicServiceId			=	localStorage.getItem("dynamicServiceId"),
+				dynamicSubServiceId	=	$(this).attr("sub_service_id");
+
+		// $.getJSON(apiUrl+"/index.php?cars_id="+dynamicCarId+"&&services_id="+dynamicServiceId+"&&sub_services_id="+dynamicSubServiceId,
+		// function(data) {
+		// 	localStorage.setItem("dynamicCarName","Sedan"),
+		// 	localStorage.setItem("dynamicServiceName","Water"),
+		// 	localStorage.setItem("dynamicSubServicePrice","200"),
+		// 	localStorage.setItem("dynamicSubServiceName","Exterior");
+		// });
+
+		// Dummy till JSON works
+		localStorage.setItem("dynamicCarName","Sedan"),
+		localStorage.setItem("dynamicServiceName","Water"),
+		localStorage.setItem("dynamicSubServicePrice","200"),
+		localStorage.setItem("dynamicSubServiceName","Exterior");
+	});
 })
