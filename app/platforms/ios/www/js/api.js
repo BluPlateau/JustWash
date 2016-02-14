@@ -1,5 +1,10 @@
 jQuery(document).ready(function($){
 	//body
+	$(function() {
+		$( "#datepicker" ).datepicker();
+	});
+	
+	//API
 	var apiUrl		=	"http://justwashapi.gsprasad.com",
 			cars		=	apiUrl+"/index.php?cars";
 

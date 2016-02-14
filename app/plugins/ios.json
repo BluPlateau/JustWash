@@ -7,10 +7,10 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
+        "com.paypal.cordova.mobilesdk": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
         },
-        "com.paypal.cordova.mobilesdk": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
         }
     },

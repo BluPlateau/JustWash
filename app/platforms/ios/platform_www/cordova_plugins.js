@@ -12,8 +12,8 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-whitelist": "1.2.1",
-    "com.paypal.cordova.mobilesdk": "3.1.21"
+    "com.paypal.cordova.mobilesdk": "3.1.21",
+    "cordova-plugin-whitelist": "1.2.1"
 }
 // BOTTOM OF METADATA
 });

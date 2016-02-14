@@ -18,10 +18,10 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
+        "com.paypal.cordova.mobilesdk": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
         },
-        "com.paypal.cordova.mobilesdk": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
         }
     },
@@ -37,7 +37,7 @@
         }
     ],
     "plugin_metadata": {
-        "cordova-plugin-whitelist": "1.2.1",
-        "com.paypal.cordova.mobilesdk": "3.1.21"
+        "com.paypal.cordova.mobilesdk": "3.1.21",
+        "cordova-plugin-whitelist": "1.2.1"
     }
 }
