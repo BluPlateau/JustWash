@@ -132,4 +132,21 @@ jQuery(document).ready(function($){
 		var	retrievedLocation		=	localStorage.getItem("currentLocation");
 		$(this).find("input[name='address']").val(retrievedLocation);
 	}
+
+	// Loading Invoice Details
+	if($("#invoicedetails").length>0) {
+		var	paymentStatus	=	localStorage.getItem("paymentStatus");
+		if (paymentStatus == "approved") {
+			var	retrievedLocation		=	localStorage.getItem("currentLocation"),
+					fullName						=	localStorage.getItem("fullName"),
+					email								=	localStorage.getItem("email");
+			
+			//Assigning Values
+			$(this).find("input[name='address']").val(retrievedLocation);
+			$(this).find("input[name='full-name']").val(fullName);
+			$(this).find("input[name='email']").val(email);
+		} else {
+			alert("Application unSuccessful")
+		}
+	}
 })
