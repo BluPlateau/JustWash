@@ -58,8 +58,13 @@ var app = {
 
 	},
 	onSuccesfulPayment : function(payment) {
-			alert("payment success: " + JSON.stringify(payment, null, 4));
-			window.location.href = "result.html";
+		var	paymentResponse	=	payment;
+		$.each(paymentResponse, function(i,item){
+			if ((item.state) == "approved") {
+				localStorage.setItem("paymentStatus", item.state);
+			}
+		});
+		window.location.href = "invoice.html";
 	},
 	onAuthorizationCallback : function(authorization) {
 			alert("authorization: " + JSON.stringify(authorization, null, 4));
@@ -90,6 +95,8 @@ var app = {
 
 			buyNowBtn.onclick = function(e) {
 					// single payment
+					localStorage.setItem("fullName","Srinivasa"),
+					localStorage.setItem("email","prasad@bluplateau.com");
 					PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
 			};
 
