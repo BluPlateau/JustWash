@@ -19,105 +19,110 @@
 var app = {
 	// Application Constructor
 	initialize: function() {
-					this.bindEvents();
+		this.bindEvents();
 	},
 	// Bind Event Listeners
 	//
 	// Bind any events that are required on startup. Common events are:
 	// 'load', 'deviceready', 'offline', and 'online'.
 	bindEvents: function() {
-					document.addEventListener('deviceready', this.onDeviceReady, false);
+		document.addEventListener('deviceready', this.onDeviceReady, false);
 	},
 	// deviceready Event Handler
 	//
 	// The scope of 'this' is the event. In order to call the 'receivedEvent'
 	// function, we must explicity call 'app.receivedEvent(...);'
 	onDeviceReady: function() {
-					app.receivedEvent('deviceready');
+		app.receivedEvent('deviceready');
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
-					// var parentElement = document.getElementById(id);
-					// var listeningElement = parentElement.querySelector('.listening');
-					// var receivedElement = parentElement.querySelector('.received');
-
-					// listeningElement.setAttribute('style', 'display:none;');
-					// receivedElement.setAttribute('style', 'display:block;');
-
-					// console.log('Received Event: ' + id);
-
-					// start to initialize PayPalMobile library
-					app.initPaymentUI();
+		// start to initialize PayPalMobile library
+		app.initPaymentUI();
 	},
 	initPaymentUI : function () {
-			var clientIDs = {
-					"PayPalEnvironmentProduction": "YOUR_PRODUCTION_CLIENT_ID",
-					"PayPalEnvironmentSandbox": "Aa7er8oGXx3EiAo08-XZ051gwBOevdzhEVeea8QTE4iO19EuzDBTGq2oL5PhYv3XD-51gohznM8THezY"
-			};
-			PayPalMobile.init(clientIDs, app.onPayPalMobileInit);
-
+		var clientIDs = {
+			"PayPalEnvironmentProduction": "YOUR_PRODUCTION_CLIENT_ID",
+			"PayPalEnvironmentSandbox": "Aa7er8oGXx3EiAo08-XZ051gwBOevdzhEVeea8QTE4iO19EuzDBTGq2oL5PhYv3XD-51gohznM8THezY"
+		};
+		PayPalMobile.init(clientIDs, app.onPayPalMobileInit);
 	},
 	onSuccesfulPayment : function(payment) {
 		var	paymentResponse	=	payment;
 		$.each(paymentResponse, function(i,item){
 			if ((item.state) == "approved") {
+				localStorage.setItem("invoiceId", item.id);
 				localStorage.setItem("paymentStatus", item.state);
 			}
 		});
 		window.location.href = "invoice.html";
 	},
 	onAuthorizationCallback : function(authorization) {
-			alert("authorization: " + JSON.stringify(authorization, null, 4));
+		alert("authorization: " + JSON.stringify(authorization, null, 4));
 	},
 	createPayment : function () {
-			// for simplicity use predefined amount
-			// optional payment details for more information check [helper js file](https://github.com/paypal/PayPal-Cordova-Plugin/blob/master/www/paypal-mobile-js-helper.js)
-			var	dynamicCarName						=	localStorage.getItem("dynamicCarName"),
-					dynamicServiceName				=	localStorage.getItem("dynamicServiceName"),
-					dynamicSubServicePrice			=	localStorage.getItem("dynamicSubServicePrice"),
-					dynamicSubServiceName		=	localStorage.getItem("dynamicSubServiceName"),
-					payment											=	new PayPalPayment(dynamicSubServicePrice, "NZD", dynamicCarName+" | "+dynamicServiceName+" | "+dynamicSubServiceName , "Sale");
-			return payment;
+		// for simplicity use predefined amount
+		// optional payment details for more information check [helper js file](https://github.com/paypal/PayPal-Cordova-Plugin/blob/master/www/paypal-mobile-js-helper.js)
+		var	dynamicCarName						=	localStorage.getItem("dynamicCarName"),
+				dynamicServiceName				=	localStorage.getItem("dynamicServiceName"),
+				dynamicSubServicePrice			=	localStorage.getItem("dynamicSubServicePrice"),
+				dynamicSubServiceName		=	localStorage.getItem("dynamicSubServiceName"),
+				payment											=	new PayPalPayment(dynamicSubServicePrice, "NZD", dynamicCarName+" | "+dynamicServiceName+" | "+dynamicSubServiceName , "Sale");
+		return payment;
 	},
 	configuration : function () {
-			// for more options see `paypal-mobile-js-helper.js`
-			var config = new PayPalConfiguration({merchantName: "My test shop", merchantPrivacyPolicyURL: "https://mytestshop.com/policy", merchantUserAgreementURL: "https://mytestshop.com/agreement"});
-			return config;
+		// for more options see `paypal-mobile-js-helper.js`
+		var config = new PayPalConfiguration({merchantName: "Just Wash Limited", merchantPrivacyPolicyURL: "https://mytestshop.com/policy", merchantUserAgreementURL: "https://mytestshop.com/agreement"});
+		return config;
 	},
 	onPrepareRender : function() {
-			// buttons defined in index.html
-			//  <button id="buyNowBtn"> Buy Now !</button>
-			//  <button id="buyInFutureBtn"> Pay in Future !</button>
-			//  <button id="profileSharingBtn"> ProfileSharing !</button>
-			var buyNowBtn = document.getElementById("buyNowBtn");
-			var buyInFutureBtn = document.getElementById("buyInFutureBtn");
-			var profileSharingBtn = document.getElementById("profileSharingBtn");
+		var buyNowBtn = document.getElementById("buyNowBtn");
+		var buyInFutureBtn = document.getElementById("buyInFutureBtn");
+		var profileSharingBtn = document.getElementById("profileSharingBtn");
 
-			buyNowBtn.onclick = function(e) {
-					// single payment
-					localStorage.setItem("fullName","Srinivasa"),
-					localStorage.setItem("email","prasad@bluplateau.com");
-					PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
-			};
+		buyNowBtn.onclick = function(e) {
+			// parameters for invoicing
+			// Collecting Values
+			var	customerFullName 					=	$("#customerdetails").find("input[name='fullname']").val(),
+					customerEmail 							=	$("#customerdetails").find("input[name='email']").val(),
+					customerPhone 							=	$("#customerdetails").find("input[name='phone']").val(),
+					customerServiceDate 				=	$("#customerdetails").find("input[name='servicedate']").val(),
+					customerHours 							=	$("#customerdetails").find("input[name='hours']").val(),
+					customerMinutes 						=	$("#customerdetails").find("input[name='minutes']").val();
 
-			buyInFutureBtn.onclick = function(e) {
-					// future payment
-					PayPalMobile.renderFuturePaymentUI(app.onAuthorizationCallback, app.onUserCanceled);
-			};
+			if (((customerFullName && customerEmail && customerPhone && customerServiceDate) != "" || undefined)) {
+				// Storing into localStorage
+				localStorage.setItem("fullName",customerFullName),
+				localStorage.setItem("email",customerEmail);
+				localStorage.setItem("phone",customerPhone);
+				localStorage.setItem("servicedate",customerServiceDate);
+				localStorage.setItem("hours",customerHours);
+				localStorage.setItem("minutes",customerMinutes);
 
-			profileSharingBtn.onclick = function(e) {
-					// profile sharing
-					PayPalMobile.renderProfileSharingUI(["profile", "email", "phone", "address", "futurepayments", "paypalattributes"], app.onAuthorizationCallback, app.onUserCanceled);
-			};
+				// Single payment UI
+				PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
+			} else {
+				alert("All fields with * required");
+			}
+		};
+
+		buyInFutureBtn.onclick = function(e) {
+			// future payment
+			PayPalMobile.renderFuturePaymentUI(app.onAuthorizationCallback, app.onUserCanceled);
+		};
+
+		profileSharingBtn.onclick = function(e) {
+			// profile sharing
+			PayPalMobile.renderProfileSharingUI(["profile", "email", "phone", "address", "futurepayments", "paypalattributes"], app.onAuthorizationCallback, app.onUserCanceled);
+		};
 	},
 	onPayPalMobileInit : function() {
-			// must be called
-			// use PayPalEnvironmentNoNetwork mode to get look and feel of the flow
-			PayPalMobile.prepareToRender("PayPalEnvironmentSandbox", app.configuration(), app.onPrepareRender);
+		// must be called
+		// use PayPalEnvironmentNoNetwork mode to get look and feel of the flow
+		PayPalMobile.prepareToRender("PayPalEnvironmentSandbox", app.configuration(), app.onPrepareRender);
 	},
 	onUserCanceled : function(result) {
-			alert(result);
+		alert(result);
 	}
 };
-
 app.initialize();
