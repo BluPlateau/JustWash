@@ -15,6 +15,7 @@ jQuery(document).ready(function($){
 			$.each(data, function(i,item) {
 				var	carId			=	item.value1,
 						carName	=	item.value2;
+						carImage	=	item.value3;
 				// Populating the "Cars items" list
 				$("#cars").clone().attr("id",carName).appendTo(".list-events");
 				$("#"+carName).find(".car-title").attr("carId",carId).text(carName);
@@ -38,9 +39,10 @@ jQuery(document).ready(function($){
 		$.getJSON(apiUrl+"/index.php?car_id="+dynamicCarId,
 		function(data) {
 			$.each(data, function(i,item) {
-				var	serviceId		=	item.value1,
-						service			=	item.value2,
-						description	=	item.value3;
+				var	serviceId					=	item.value1,
+						service						=	item.value2,
+						serviceImage			=	item.value3,
+						description				=	item.value4;
 				// Populating the "Service items" list
 				$("#services").clone().attr("id",service).appendTo(".list-events");
 				$("#"+service).find(".service-title").attr("serviceId",serviceId).text(service);
@@ -66,10 +68,11 @@ jQuery(document).ready(function($){
 		$.getJSON(apiUrl+"/index.php?cars_id="+dynamicCarId+"&&services_id="+dynamicServiceId,
 		function(data) {
 			$.each(data, function(i, item) {
-				var	subServiceId	=	item.value1,
-						subService		=	item.value2,
-						description		=	item.value3,
-						price					=	item.value4;
+				var	subServiceId				=	item.value1,
+						subService					=	item.value2,
+						description					=	item.value3,
+						subServiceImage		=	item.value4;
+						price								=	item.value5;
 				// Populating the "Sub Service items" list
 				$("#sub-services").clone().attr("id",subService).appendTo(".list-news");
 				$("#"+subService).find(".price").text(price);
@@ -83,29 +86,30 @@ jQuery(document).ready(function($){
 	}
 
 	/*
-		Requesting "Car, Service, Sub Service Names & Sub Service Pricing"
-		based on selection using the ID's of each section
+		Requesting "Car, Service, Sub Service Names & Sub Service
+		Pricing" based on selection using the ID's of each section
 
-		Geo location is tracked using "Phonegap GeoLocation" & "Google Latlng API"
+		Geo location is tracked using "Phonegap GeoLocation" & "Google
+		Latlng API"
 	*/
 	$(document).on("click",".book",function() {
 		var	dynamicCarId					=	localStorage.getItem("dynamicCarId"),
 				dynamicServiceId			=	localStorage.getItem("dynamicServiceId"),
 				dynamicSubServiceId	=	$(this).attr("sub_service_id");
 
-		// $.getJSON(apiUrl+"/index.php?cars_id="+dynamicCarId+"&&services_id="+dynamicServiceId+"&&sub_services_id="+dynamicSubServiceId,
-		// function(data) {
-		// 	localStorage.setItem("dynamicCarName","Sedan"),
-		// 	localStorage.setItem("dynamicServiceName","Water"),
-		// 	localStorage.setItem("dynamicSubServicePrice","200"),
-		// 	localStorage.setItem("dynamicSubServiceName","Exterior");
-		// });
-
-		// Dummy till JSON works
-		localStorage.setItem("dynamicCarName","Sedan"),
-		localStorage.setItem("dynamicServiceName","Water"),
-		localStorage.setItem("dynamicSubServicePrice","200"),
-		localStorage.setItem("dynamicSubServiceName","Exterior");
+		$.getJSON(apiUrl+"/index.php?carid="+dynamicCarId+"&&serviceid="+dynamicServiceId+"&&subserviceid="+dynamicSubServiceId,
+		function(data) {
+			$.each(data, function(i,item) {
+				var	dynamicCarName					=	item.value2,
+						dynamicServiceName			=	item.value3,
+						dynamicSubServiceName	=	item.value4,
+						dynamicSubServicePrice		=	item.value5;	
+				localStorage.setItem("dynamicCarName",dynamicCarName),
+				localStorage.setItem("dynamicServiceName",dynamicServiceName),
+				localStorage.setItem("dynamicSubServicePrice",dynamicSubServicePrice),
+				localStorage.setItem("dynamicSubServiceName",dynamicSubServiceName);
+			});
+		});
 
 		// Getting the user coordinates using "Phonegap Plugin"
 		navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -133,20 +137,45 @@ jQuery(document).ready(function($){
 		$(this).find("input[name='address']").val(retrievedLocation);
 	}
 
+	// Collecting the parameters for invoicing
+	// $(document).on("click","#buyNowBtn",function(e){
+	// 	localStorage.setItem("fullName","Srinivasa"),
+	// 	localStorage.setItem("email","prasad@bluplateau.com");
+	// 	localStorage.setItem("phone","+91 9704 3 705 67");
+	// 	localStorage.setItem("date","21/08/2016");
+	// 	localStorage.setItem("hours","20");
+	// 	localStorage.setItem("minutes","45");
+	// });
+
 	// Loading Invoice Details
 	if($("#invoicedetails").length>0) {
 		var	paymentStatus	=	localStorage.getItem("paymentStatus");
 		if (paymentStatus == "approved") {
+			// Collecting all the session variables required
 			var	retrievedLocation		=	localStorage.getItem("currentLocation"),
 					fullName						=	localStorage.getItem("fullName"),
-					email								=	localStorage.getItem("email");
+					email								=	localStorage.getItem("email"),
+					phone							=	localStorage.getItem("phone"),
+					serviceDate				=	localStorage.getItem("servicedate"),
+					hours								=	localStorage.getItem("hours"),
+					minutes						=	localStorage.getItem("minutes"),
+					invoiceId						=	localStorage.getItem("invoiceId"),
+					paidAmount				=	localStorage.getItem("dynamicSubServicePrice"),
+					serviceName				=	localStorage.getItem("dynamicCarName") + " " + localStorage.getItem("dynamicSubServiceName") + " " + localStorage.getItem("dynamicServiceName");
 			
-			//Assigning Values
+			//	Assigning Values
 			$(this).find("input[name='address']").val(retrievedLocation);
-			$(this).find("input[name='full-name']").val(fullName);
+			$(this).find("input[name='fullname']").val(fullName);
 			$(this).find("input[name='email']").val(email);
+			$(this).find("input[name='phone']").val(phone);
+			$(this).find("input[name='servicedate']").val(serviceDate);
+			$(this).find("input[name='servicename']").val(serviceName);
+			$(this).find("input[name='hours']").val(hours);
+			$(this).find("input[name='minutes']").val(minutes);
+			$(this).find("input[name='invoiceid']").val(invoiceId);
+			$(this).find("input[name='paidamount']").val(paidAmount);
 		} else {
-			alert("Application unSuccessful")
+			alert("Payment unSuccessful")
 		}
 	}
 })
