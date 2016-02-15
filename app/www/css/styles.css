@@ -145,6 +145,7 @@ a {
   width: 45px;
   height: 45px;
   font-size: 40px;
+  color: #8D8A8A;
 }
 .navbar-button-icon.home-icon {
   display: inline-block;
@@ -279,8 +280,8 @@ a {
   overflow-x: scroll;
   overflow-y: scroll;
   height: 550px;
-  background-image: -webkit-linear-gradient(107deg, #4c68b1, black 82%);
-  background-image: linear-gradient(343deg, #4c68b1, black 82%);
+  background-image: -webkit-linear-gradient(343deg, #FFFFFF, white 98%);
+  background-image: linear-gradient(343deg, #FFFFFF, white 98%);
 }
 .nav-menu-header {
   height: 137px;
@@ -419,11 +420,23 @@ a {
   transform: translate(0px, -69px);
 }
 .link-upper {
-  display: inline-block;
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 10px;
-  text-align: center;
-  text-decoration: none;
+    display: inline-block;
+    color: rgb(6, 118, 254);
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+}
+.header.icon.ion-model-s {
+    font-size: xx-large;
+}
+.header-logo {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 46px;
+  height: 45px;
+  margin-top: -3px;
+  float: right;
+  border-radius: 16px;
 }
 .link-upper.dark {
   color: #c2c2c2;
@@ -702,8 +715,8 @@ a {
 }
 .page-content.bg-gradient {
   background-color: #1f2532;
-  background-image: -webkit-linear-gradient(107deg, #4c68b1, black 98%);
-  background-image: linear-gradient(343deg, #4c68b1, black 98%);
+  background-image: -webkit-linear-gradient(343deg, #FFFFFF, white 98%);
+  background-image: linear-gradient(343deg, #FFFFFF, white 98%);
 }
 .loading-icon {
   position: absolute;
