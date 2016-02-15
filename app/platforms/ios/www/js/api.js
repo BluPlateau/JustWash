@@ -137,16 +137,6 @@ jQuery(document).ready(function($){
 		$(this).find("input[name='address']").val(retrievedLocation);
 	}
 
-	// Collecting the parameters for invoicing
-	// $(document).on("click","#buyNowBtn",function(e){
-	// 	localStorage.setItem("fullName","Srinivasa"),
-	// 	localStorage.setItem("email","prasad@bluplateau.com");
-	// 	localStorage.setItem("phone","+91 9704 3 705 67");
-	// 	localStorage.setItem("date","21/08/2016");
-	// 	localStorage.setItem("hours","20");
-	// 	localStorage.setItem("minutes","45");
-	// });
-
 	// Loading Invoice Details
 	if($("#invoicedetails").length>0) {
 		var	paymentStatus	=	localStorage.getItem("paymentStatus");

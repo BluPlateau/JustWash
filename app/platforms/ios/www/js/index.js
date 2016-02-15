@@ -87,10 +87,10 @@ var app = {
 					customerEmail 							=	$("#customerdetails").find("input[name='email']").val(),
 					customerPhone 							=	$("#customerdetails").find("input[name='phone']").val(),
 					customerServiceDate 				=	$("#customerdetails").find("input[name='servicedate']").val(),
-					customerHours 							=	$("#customerdetails").find("input[name='hours']").val(),
-					customerMinutes 						=	$("#customerdetails").find("input[name='minutes']").val();
+					customerHours 							=	$("#customerdetails").find("#hours").val(),
+					customerMinutes 						=	$("#customerdetails").find("#minutes").val();
 
-			if (((customerFullName && customerEmail && customerPhone && customerServiceDate) != "" || undefined)) {
+			if ((customerFullName && customerEmail && customerPhone && customerServiceDate && customerHours && customerMinutes) != "") {
 				// Storing into localStorage
 				localStorage.setItem("fullName",customerFullName),
 				localStorage.setItem("email",customerEmail);
