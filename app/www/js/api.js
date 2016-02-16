@@ -16,9 +16,10 @@ jQuery(document).ready(function($){
 				var	carId			=	item.value1,
 						carName	=	item.value2;
 						carImage	=	item.value3;
+						logicalCarName	=	carName.replace(' ','');
 				// Populating the "Cars items" list
-				$("#cars").clone().attr("id",carName).appendTo(".list-events");
-				$("#"+carName).find(".car-title").attr("carId",carId).text(carName);
+				$("#cars").clone().attr("id",logicalCarName).appendTo(".list-events");
+				$("#"+logicalCarName).find(".car-title").attr("carId",carId).text(carName);
 			});
 			// Hiding the Cars List Template
 			$("#cars").css("display","none");
@@ -43,10 +44,11 @@ jQuery(document).ready(function($){
 						service						=	item.value2,
 						serviceImage			=	item.value3,
 						description				=	item.value4;
+						logicalservice	=	service.replace(' ','');
 				// Populating the "Service items" list
-				$("#services").clone().attr("id",service).appendTo(".list-events");
-				$("#"+service).find(".service-title").attr("serviceId",serviceId).text(service);
-				$("#"+service).find(".description-new").text(description);
+				$("#services").clone().attr("id",logicalservice).appendTo(".list-events");
+				$("#"+logicalservice).find(".service-title").attr("serviceId",serviceId).text(service);
+				$("#"+logicalservice).find(".description-new").text(description);
 			});
 			// Hiding the Services List Template
 			$("#services").css("display","none");
@@ -73,12 +75,13 @@ jQuery(document).ready(function($){
 						description					=	item.value3,
 						subServiceImage		=	item.value4;
 						price								=	item.value5;
+						logicalsubService	=	subService.replace(' ','');
 				// Populating the "Sub Service items" list
-				$("#sub-services").clone().attr("id",subService).appendTo(".list-news");
-				$("#"+subService).find(".price").text(price);
-				$("#"+subService).find(".sub-service-title").text(subService);
-				$("#"+subService).find(".description-new").text(description);
-				$("#"+subService).find(".book").attr("sub_service_id",subServiceId);
+				$("#sub-services").clone().attr("id",logicalsubService).appendTo(".list-news");
+				$("#"+logicalsubService).find(".price").text(price);
+				$("#"+logicalsubService).find(".sub-service-title").text(subService);
+				$("#"+logicalsubService).find(".description-new").text(description);
+				$("#"+logicalsubService).find(".book").attr("sub_service_id",subServiceId);
 			});
 			// Hiding the Sub Services List Template
 			$("#sub-services").css("display","none");
