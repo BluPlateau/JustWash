@@ -43,12 +43,12 @@ jQuery(document).ready(function($){
 				var	serviceId					=	item.value1,
 						service						=	item.value2,
 						serviceImage			=	item.value3,
-						description				=	item.value4;
-						logicalservice	=	service.replace(' ','');
+						description				=	item.value4,
+						logicalService	=	service.replace(' ','');
 				// Populating the "Service items" list
-				$("#services").clone().attr("id",logicalservice).appendTo(".list-events");
-				$("#"+logicalservice).find(".service-title").attr("serviceId",serviceId).text(service);
-				$("#"+logicalservice).find(".description-new").text(description);
+				$("#services").clone().attr("id",logicalService).appendTo(".list-events");
+				$("#"+logicalService).find(".service-title").attr("serviceId",serviceId).text(service);
+				$("#"+logicalService).find(".description-new").text(description);
 			});
 			// Hiding the Services List Template
 			$("#services").css("display","none");
@@ -73,15 +73,15 @@ jQuery(document).ready(function($){
 				var	subServiceId				=	item.value1,
 						subService					=	item.value2,
 						description					=	item.value3,
-						subServiceImage		=	item.value4;
-						price								=	item.value5;
-						logicalsubService	=	subService.replace(' ','');
+						subServiceImage		=	item.value4,
+						price								=	item.value5,
+						logicalSubService	=	subService.replace(' ','');
 				// Populating the "Sub Service items" list
-				$("#sub-services").clone().attr("id",logicalsubService).appendTo(".list-news");
-				$("#"+logicalsubService).find(".price").text(price);
-				$("#"+logicalsubService).find(".sub-service-title").text(subService);
-				$("#"+logicalsubService).find(".description-new").text(description);
-				$("#"+logicalsubService).find(".book").attr("sub_service_id",subServiceId);
+				$("#sub-services").clone().attr("id",logicalSubService).appendTo(".list-news");
+				$("#"+logicalSubService).find(".price").text(price);
+				$("#"+logicalSubService).find(".sub-service-title").text(subService);
+				$("#"+logicalSubService).find(".description-new").text(description);
+				$("#"+logicalSubService).find(".book").attr("sub_service_id",subServiceId);
 			});
 			// Hiding the Sub Services List Template
 			$("#sub-services").css("display","none");
