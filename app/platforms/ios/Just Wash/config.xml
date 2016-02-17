@@ -17,9 +17,6 @@
     <feature name="PayPalMobile">
         <param name="ios-package" onload="true" value="PayPalMobileCordovaPlugin" />
     </feature>
-    <feature name="Geolocation">
-        <param name="ios-package" value="CDVLocation" />
-    </feature>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <name>Just Wash</name>
