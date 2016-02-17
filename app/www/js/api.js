@@ -8,15 +8,19 @@ jQuery(document).ready(function($){
 	var apiUrl		=	"http://justwashapi.gsprasad.com",
 			cars		=	apiUrl+"/index.php?cars";
 
+	// Global Variables
+	var reg	= new RegExp(" ","g");
+
 	// Loading Cars Data
 	if ($("#cars").length > 0) {
 		$.getJSON(apiUrl+"/index.php?cars",
 		function(data) {
 			$.each(data, function(i,item) {
+				reg;
 				var	carId			=	item.value1,
 						carName	=	item.value2;
 						carImage	=	item.value3;
-						logicalCarName	=	carName.replace(' ','');
+						logicalCarName	=	carName.replace(reg,"");
 				// Populating the "Cars items" list
 				$("#cars").clone().attr("id",logicalCarName).appendTo(".list-events");
 				$("#"+logicalCarName).find(".car-title").attr("carId",carId).text(carName);
@@ -40,11 +44,12 @@ jQuery(document).ready(function($){
 		$.getJSON(apiUrl+"/index.php?car_id="+dynamicCarId,
 		function(data) {
 			$.each(data, function(i,item) {
+				reg;
 				var	serviceId					=	item.value1,
 						service						=	item.value2,
 						serviceImage			=	item.value3,
 						description				=	item.value4,
-						logicalService	=	service.replace(' ','');
+						logicalService	=	service.replace(reg,"");
 				// Populating the "Service items" list
 				$("#services").clone().attr("id",logicalService).appendTo(".list-events");
 				$("#"+logicalService).find(".service-title").attr("serviceId",serviceId).text(service);
@@ -70,12 +75,13 @@ jQuery(document).ready(function($){
 		$.getJSON(apiUrl+"/index.php?cars_id="+dynamicCarId+"&&services_id="+dynamicServiceId,
 		function(data) {
 			$.each(data, function(i, item) {
+				reg;
 				var	subServiceId				=	item.value1,
 						subService					=	item.value2,
 						description					=	item.value3,
 						subServiceImage		=	item.value4,
 						price								=	item.value5,
-						logicalSubService	=	subService.replace(' ','');
+						logicalSubService	=	subService.replace(reg,"");
 				// Populating the "Sub Service items" list
 				$("#sub-services").clone().attr("id",logicalSubService).appendTo(".list-news");
 				$("#"+logicalSubService).find(".price").text(price);
