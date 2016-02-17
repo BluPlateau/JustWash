@@ -118,6 +118,7 @@ jQuery(document).ready(function($){
 		navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 		function onSuccess(position) {
+			// alert("Hello");
 			var coords = position.coords.latitude + "," + position.coords.longitude;
 			$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords,
 			function(data) {
