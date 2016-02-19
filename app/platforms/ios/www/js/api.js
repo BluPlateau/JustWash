@@ -1,15 +1,12 @@
 jQuery(document).ready(function($){
 	//body
-	$(function() {
-		$( "#datepicker" ).datepicker();
-	});
-	
+
 	//API
 	var apiUrl		=	"http://justwashapi.gsprasad.com",
 			cars		=	apiUrl+"/index.php?cars";
 
 	// Global Variables
-	var reg	= new RegExp(" ","g");
+	var reg	= new RegExp(" ","g"); // For Substituting spaces in ID Names
 
 	// Loading Cars Data
 	if ($("#cars").length > 0) {
@@ -49,7 +46,7 @@ jQuery(document).ready(function($){
 						service						=	item.value2,
 						serviceImage			=	item.value3,
 						description				=	item.value4,
-						logicalService	=	service.replace(reg,"");
+						logicalService		=	service.replace(reg,"");
 				// Populating the "Service items" list
 				$("#services").clone().attr("id",logicalService).appendTo(".list-events");
 				$("#"+logicalService).find(".service-title").attr("serviceId",serviceId).text(service);
@@ -143,6 +140,7 @@ jQuery(document).ready(function($){
 
 	// Loading Address Data
 	if ($("#customerdetails").length>0) {
+		$( "#datepicker" ).datepicker();
 		var	retrievedLocation		=	localStorage.getItem("currentLocation");
 		$(this).find("input[name='address']").val(retrievedLocation);
 	}
@@ -162,8 +160,9 @@ jQuery(document).ready(function($){
 					invoiceId						=	localStorage.getItem("invoiceId"),
 					paidAmount				=	localStorage.getItem("dynamicSubServicePrice"),
 					serviceName				=	localStorage.getItem("dynamicCarName") + " " + localStorage.getItem("dynamicSubServiceName") + " " + localStorage.getItem("dynamicServiceName");
-			
-			//	Assigning Values
+
+			$.getJSON(apiUrl+"/index.php?email="+email+"&invoice_id="+invoiceId+"&date="+serviceDate+"&service_name="+serviceName+"&price="+paidAmount+"&add_invoice=add+invoice");
+			//	Displaying Values
 			$(this).find("input[name='address']").val(retrievedLocation);
 			$(this).find("input[name='fullname']").val(fullName);
 			$(this).find("input[name='email']").val(email);

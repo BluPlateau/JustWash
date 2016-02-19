@@ -891,6 +891,11 @@ a {
   padding-left: 0px;
   font-size: 11px;
 }
+pre.description-new {
+  margin-top: 5px !important;
+  font-family: initial;
+  line-height: 20px;
+}
 .description-new.larger {
   font-size: 13px;
 }
