@@ -2,15 +2,14 @@ jQuery(document).ready(function($){
 	//body
 
 	//API
-	var apiUrl		=	"http://justwashapi.gsprasad.com",
-			cars		=	apiUrl+"/index.php?cars";
+	var apiUrl		=	"http://justwashapi.gsprasad.com";
 
 	// Global Variables
 	var reg	= new RegExp(" ","g"); // For Substituting spaces in ID Names
 
 	// Loading Cars Data
 	if ($("#cars").length > 0) {
-		$.getJSON(apiUrl+"/index.php?cars",
+		$.getJSON(apiUrl+"?cars",
 		function(data) {
 			$.each(data, function(i,item) {
 				reg;
@@ -38,7 +37,7 @@ jQuery(document).ready(function($){
 	// Loading Services Data
 	if ($("#services").length > 0) {
 		var	dynamicCarId	=	localStorage.getItem("dynamicCarId");
-		$.getJSON(apiUrl+"/index.php?car_id="+dynamicCarId,
+		$.getJSON(apiUrl+"?car_id="+dynamicCarId,
 		function(data) {
 			$.each(data, function(i,item) {
 				reg;
@@ -69,7 +68,7 @@ jQuery(document).ready(function($){
 	if($("#sub-services").length > 0) {
 		var	dynamicCarId			=	localStorage.getItem("dynamicCarId"),
 				dynamicServiceId	=	localStorage.getItem("dynamicServiceId");
-		$.getJSON(apiUrl+"/index.php?cars_id="+dynamicCarId+"&&services_id="+dynamicServiceId,
+		$.getJSON(apiUrl+"?cars_id="+dynamicCarId+"&&services_id="+dynamicServiceId,
 		function(data) {
 			$.each(data, function(i, item) {
 				reg;
@@ -103,7 +102,7 @@ jQuery(document).ready(function($){
 				dynamicServiceId			=	localStorage.getItem("dynamicServiceId"),
 				dynamicSubServiceId	=	$(this).attr("sub_service_id");
 
-		$.getJSON(apiUrl+"/index.php?carid="+dynamicCarId+"&&serviceid="+dynamicServiceId+"&&subserviceid="+dynamicSubServiceId,
+		$.getJSON(apiUrl+"?carid="+dynamicCarId+"&&serviceid="+dynamicServiceId+"&&subserviceid="+dynamicSubServiceId,
 		function(data) {
 			$.each(data, function(i,item) {
 				var	dynamicCarName					=	item.value2,
@@ -161,7 +160,7 @@ jQuery(document).ready(function($){
 					paidAmount				=	localStorage.getItem("dynamicSubServicePrice"),
 					serviceName				=	localStorage.getItem("dynamicCarName") + " " + localStorage.getItem("dynamicSubServiceName") + " " + localStorage.getItem("dynamicServiceName");
 
-			$.getJSON(apiUrl+"/index.php?email="+email+"&invoice_id="+invoiceId+"&date="+serviceDate+"&service_name="+serviceName+"&price="+paidAmount+"&add_invoice=add+invoice");
+			$.getJSON(apiUrl+"?email="+email+"&invoice_id="+invoiceId+"&date="+serviceDate+"&service_name="+serviceName+"&price="+paidAmount+"&add_invoice=add+invoice");
 			//	Displaying Values
 			$(this).find("input[name='address']").val(retrievedLocation);
 			$(this).find("input[name='fullname']").val(fullName);
