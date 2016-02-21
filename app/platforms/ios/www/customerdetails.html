@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Delivery Details Confirmation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/framework.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="shortcut icon" type="image/x-icon" href="images/logo.ico">
+  <link rel="apple-touch-icon" href="images/logo.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div class="app">
+    <div id="deviceready">
+      <section class="w-section mobile-wrapper">
+        <div class="page-content" id="main-stack">
+          <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+              <div class="w-container">
+                <nav class="w-nav-menu nav-menu bg-gradient" role="navigation">
+                  <div class="nav-menu-header">
+                    <div class="logo">Just Wash Services</div>
+                  </div>
+                  <a class="w-clearfix w-inline-block nav-menu-link" href="index.html" data-load="1">
+                    <div class="icon-list-menu">
+                      <div class="icon ion-model-s"></div>
+                    </div>
+                    <div class="nav-menu-titles">Car Washes</div>
+                  </a>
+                  <div class="w-dropdown dropdown-container" data-delay="0">
+                    <div class="w-dropdown-toggle w-clearfix nav-menu-link dropdown w--open">
+                      <div class="icon-list-menu">
+                          <div class="icon ion-ios-home-outline"></div>
+                      </div>
+                      <div class="nav-menu-titles">My Account</div>
+                      <div class="w-icon-dropdown-toggle dropdown-icon"></div>
+                    </div>
+                    <nav class="w-dropdown-list drop-down-list w--open">
+                      <a class="w-clearfix w-inline-block nav-menu-link" href="jw_invoices.html" data-load="1">
+                        <div class="icon-list-menu">
+                          <div class="icon ion-printer"></div>
+                        </div>
+                        <div class="nav-menu-titles">Invoices</div>
+                        <div class="nav-menu-text-right">3</div>
+                      </a>
+                      <a class="w-clearfix w-inline-block nav-menu-link" href="jw_services_status.html" data-load="1">
+                        <div class="icon-list-menu">
+                          <div class="icon ion-grid"></div>
+                        </div>
+                        <div class="nav-menu-titles">Service(s) Status</div>
+                        <div class="nav-menu-text-right">6</div>
+                      </a>
+                      <a class="w-clearfix w-inline-block nav-menu-link" href="jw_checkout.html" data-load="1">
+                        <div class="icon-list-menu">
+                          <div class="icon ion-bag"></div>
+                        </div>
+                        <div class="nav-menu-titles">Checkout</div>
+                        <div class="nav-menu-text-right">1</div>
+                      </a>
+                      <a class="w-clearfix w-inline-block nav-menu-link" href="jw_settings.html" data-load="1">
+                        <div class="icon-list-menu">
+                          <div class="icon ion-ios-gear-outline"></div>
+                        </div>
+                        <div class="nav-menu-titles">Settings</div>
+                      </a>
+                    </nav>
+                  </div>
+                <a class="w-clearfix w-inline-block nav-menu-link" href="index.html" data-load="1">
+                  <div class="icon-list-menu">
+                      <div class="icon ion-ios-person-outline"></div>
+                  </div>
+                  <div class="nav-menu-titles">Logout</div>
+                </a>
+                <a class="w-clearfix w-inline-block nav-menu-link" href="jw_rateus.html" data-load="1">
+                  <div class="icon-list-menu">
+                      <div class="icon ion-android-star-half"></div>
+                  </div>
+                  <div class="nav-menu-titles">About the App</div>
+                </a>
+                <div class="separator-bottom"></div>
+                <div class="separator-bottom"></div>
+                <div class="separator-bottom"></div>
+              </nav>
+              <div class="wrapper-mask" data-ix="menu-mask"></div>
+              <div class="navbar-title">Your Details</div>
+              <!-- <div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
+                <a href="jw_cars.html">
+                  <div class="icon ion-ios-home"></div>
+                </a>
+              </div> -->
+              <a class="w-inline-block navbar-button left" href="jw_cars.html">
+                <div class="header icon ion-model-s"></div>
+              </a>
+              <a class="w-inline-block navbar-button right">
+                <div class="header-logo">
+                  <img src="images/logo.png">
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="body padding">
+            <div class="w-form" id="customerdetails">
+              <form name="email-form" action="#">
+                <div class="separator-button-input"></div>
+                  <div>
+                    <label class="label-form" for="address-field">Address</label>
+                    <input class="w-input input-form" id="address-field" value="233/26" type="text" name="address" required="required">
+                    <div class="separator-fields"></div>
+                  </div>
+                  <div>
+                    <label class="label-form" for="full-name-field">FULL NAME</label>
+                    <input class="w-input input-form" id="full-name-field" type="text" name="fullname" value="" required="required">
+                    <div class="separator-fields"></div>
+                  </div>
+                  <div>
+                    <label class="label-form" for="email-field">EMAIL</label>
+                    <input class="w-input input-form" id="email-field" type="email" name="email" value="" required="required">
+                    <div class="separator-fields"></div>
+                  </div>
+                  <div>
+                    <label class="label-form" for="Phone-field">Phone</label>
+                    <input class="w-input input-form" id="Phone-field" type="tel" name="phone" value="" required="required">
+                    <div class="separator-fields"></div>
+                  </div>
+                  <div>
+                    <label class="label-form" for="datepicker">Date</label>
+                    <input class="w-input input-form" id="datepicker" type="text" name="servicedate" value="" required="required">
+                    <div class="separator-fields"></div>
+                  </div>
+                  <div class="w-col-6"  style="float: left;">
+                    <label class="label-form" for="node-10">Hours</label>
+                    <div class="separator-fields"></div>
+                    <select class="w-col-6 w-select input-form select" id="hours" name="hours">
+                      <option value="">HH</option>
+                      <option value="00">00</option>
+                      <option value="01">01</option>
+                      <option value="02">02</option>
+                      <option value="03">03</option>
+                      <option value="04">04</option>
+                      <option value="05">05</option>
+                      <option value="06">06</option>
+                      <option value="07">07</option>
+                      <option value="08">08</option>
+                      <option value="09">09</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                    </select>
+                  </div>
+                  <div class="w-col-6"  style="float: left;">
+                    <label class="label-form" for="node-10">Minutes</label>
+                    <div class="separator-fields"></div>
+                    <select class="w-col-6 w-select input-form select" id="minutes" name="minutes">
+                      <option value="">MM</option>
+                      <option value="00">00</option>
+                      <option value="01">01</option>
+                      <option value="02">02</option>
+                      <option value="03">03</option>
+                      <option value="04">04</option>
+                      <option value="05">05</option>
+                      <option value="06">06</option>
+                      <option value="07">07</option>
+                      <option value="08">08</option>
+                      <option value="09">09</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20">20</option>
+                      <option value="21">21</option>
+                      <option value="22">22</option>
+                      <option value="23">23</option>
+                      <option value="24">24</option>
+                      <option value="25">25</option>
+                      <option value="26">26</option>
+                      <option value="27">27</option>
+                      <option value="28">28</option>
+                      <option value="29">29</option>
+                      <option value="30">30</option>
+                      <option value="31">31</option>
+                      <option value="32">32</option>
+                      <option value="33">33</option>
+                      <option value="34">34</option>
+                      <option value="35">35</option>
+                      <option value="36">36</option>
+                      <option value="37">37</option>
+                      <option value="38">38</option>
+                      <option value="39">39</option>
+                      <option value="40">40</option>
+                      <option value="41">41</option>
+                      <option value="42">42</option>
+                      <option value="43">43</option>
+                      <option value="44">44</option>
+                      <option value="45">45</option>
+                      <option value="46">46</option>
+                      <option value="47">47</option>
+                      <option value="48">48</option>
+                      <option value="49">49</option>
+                      <option value="50">50</option>
+                      <option value="51">51</option>
+                      <option value="52">52</option>
+                      <option value="53">53</option>
+                      <option value="54">54</option>
+                      <option value="55">55</option>
+                      <option value="56">56</option>
+                      <option value="57">57</option>
+                      <option value="58">58</option>
+                      <option value="59">59</option>
+                    </select>
+                  </div>
+                  <div>
+                  <div class="w-inline-block small-button">
+                    <div class="icon-button">
+                      <div class="icon ion-ios-plus"></div>
+                    </div>
+                    <div class="text-button" id="buyNowBtn">Pay Now</div>
+                  </div>
+                  <a href="jw_sub_services.html"class="w-inline-block small-button" style="background-color: #81666A!important;">
+                    <div class="icon-button">
+                      <div class="icon ion-ios-minus"></div>
+                    </div>
+                    <div class="text-button">Go Back</div>
+                  </a>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="page-content loading-mask" id="new-stack">
+          <div class="loading-icon">
+            <div class="navbar-button-icon icon ion-load-d"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <script src="js/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="js/framework.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/api.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/paypal-mobile-js-helper.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
+</body>
+</html>
