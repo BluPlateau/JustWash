@@ -20,6 +20,10 @@
     <feature name="Geolocation">
         <param name="ios-package" value="CDVLocation" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="ios-package" value="CDVSplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
     <name>Just Wash</name>
@@ -31,7 +35,6 @@
     </author>
     <content src="index.html" />
     <preference name="splashscreen" value="none" />
-    <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
@@ -46,21 +49,12 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
-    <gap:plugin name="org.apache.cordova.battery-status" />
-    <gap:plugin name="org.apache.cordova.camera" />
-    <gap:plugin name="org.apache.cordova.media-capture" />
-    <gap:plugin name="org.apache.cordova.console" />
-    <gap:plugin name="org.apache.cordova.contacts" />
+    <preference name="splashScreenDelay" value="5000" />
     <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.device-motion" />
     <gap:plugin name="org.apache.cordova.device-orientation" />
     <gap:plugin name="org.apache.cordova.dialogs" />
-    <gap:plugin name="org.apache.cordova.file" />
-    <gap:plugin name="org.apache.cordova.file-transfer" />
     <gap:plugin name="org.apache.cordova.core.geolocation" />
-    <gap:plugin name="org.apache.cordova.globalization" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />
@@ -79,17 +73,24 @@
     <icon gap:platform="webos" src="www/icon.png" />
     <icon gap:platform="winphone" src="www/icon.png" />
     <icon gap:platform="winphone" gap:role="background" src="www/icon.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-ldpi" src="www/icon.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-mdpi" src="www/icon.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-hdpi" src="www/icon.png" />
-    <gap:splash gap:platform="android" gap:qualifier="port-xhdpi" src="www/icon.png" />
-    <gap:splash gap:platform="blackberry" src="www/icon.png" />
-    <gap:splash gap:platform="ios" height="480" src="www/icon.png" width="320" />
-    <gap:splash gap:platform="ios" height="960" src="www/icon.png" width="640" />
-    <gap:splash gap:platform="ios" height="1136" src="www/icon.png" width="640" />
-    <gap:splash gap:platform="ios" height="1024" src="www/icon.png" width="768" />
-    <gap:splash gap:platform="ios" height="768" src="www/icon.png" width="1024" />
-    <gap:splash gap:platform="winphone" src="www/icon.png" />
+    <splash src="splash.png" />
+    <splash height="480" platform="ios" src="splash.png" width="320" />
+    <splash height="960" platform="ios" src="splash.png" width="640" />
+    <splash height="1136" platform="ios" src="splash.png.png" width="640" />
+    <splash height="1334" platform="ios" src="splash.png" width="750" />
+    <splash height="2208" platform="ios" src="splash.png" width="1242" />
+    <splash height="1242" platform="ios" src="splash.png" width="2208" />
+    <splash height="1024" platform="ios" src="splash.png" width="768" />
+    <splash height="768" platform="ios" src="splash.png" width="1024" />
+    <splash height="2048" platform="ios" src="splash.png" width="1536" />
+    <splash height="1536" platform="ios" src="splash.png" width="2048" />
+    <splash platform="android" qualifier="ldpi" src="splash.png" />
+    <splash platform="android" qualifier="mdpi" src="splash.png" />
+    <splash platform="android" qualifier="hdpi" src="splash.png" />
+    <splash platform="android" qualifier="xhdpi" src="splash.png" />
+    <splash platform="android" qualifier="fr-xhdpi" src="splash.png" />
+    <splash platform="android" qualifier="port-xxhdpi" src="splash.png" />
+    <splash platform="android" qualifier="land-xxhdpi" src="splash.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

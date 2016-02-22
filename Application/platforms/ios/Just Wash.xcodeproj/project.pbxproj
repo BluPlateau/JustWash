@@ -64,6 +64,8 @@
 		703A9951961A47B2878BC611 /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE88107EF51C4F348A845D49 /* libopencv_core.a */; };
 		838898C84BA54888ADE5195E /* libopencv_imgproc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B628788662444995074D72 /* libopencv_imgproc.a */; };
 		E0B49EECBF314E34A30EEBDA /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FE9F801C1649E896735271 /* CDVLocation.m */; };
+		F783E9891E3545A3B153EF4B /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EC17B73FF2BC437AAC4CCAD2 /* CDVSplashScreen.m */; };
+		7E782E883BB84CE59AAF2C9F /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB25B7E9B394A13B9C5F8AF /* CDVViewController+SplashScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +165,10 @@
 		52B628788662444995074D72 /* libopencv_imgproc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencv_imgproc.a"; path = "libopencv_imgproc.a"; sourceTree = "<group>"; fileEncoding = 4; };
 		C4FE9F801C1649E896735271 /* CDVLocation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLocation.m"; path = "cordova-plugin-geolocation/CDVLocation.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		0F9BA8B936DE47E7904EB8FA /* CDVLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLocation.h"; path = "cordova-plugin-geolocation/CDVLocation.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		EC17B73FF2BC437AAC4CCAD2 /* CDVSplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVSplashScreen.m"; path = "cordova-plugin-splashscreen/CDVSplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		AAB25B7E9B394A13B9C5F8AF /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		065255BCD7B64B5D8FADF1DB /* CDVSplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		DF7184D680C64048BF747357 /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +324,10 @@
 				4FF7DCDD8E544A5BBA5C4F25 /* PayPalProfileSharingViewController.h */,
 				C4FE9F801C1649E896735271 /* CDVLocation.m */,
 				0F9BA8B936DE47E7904EB8FA /* CDVLocation.h */,
+				EC17B73FF2BC437AAC4CCAD2 /* CDVSplashScreen.m */,
+				AAB25B7E9B394A13B9C5F8AF /* CDVViewController+SplashScreen.m */,
+				065255BCD7B64B5D8FADF1DB /* CDVSplashScreen.h */,
+				DF7184D680C64048BF747357 /* CDVViewController+SplashScreen.h */,
 			);
 			name = Plugins;
 			path = "Just Wash/Plugins";
@@ -504,6 +514,8 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				EB14F52170E240A4A541DD2A /* PayPalMobileCordovaPlugin.m in Sources */,
 				E0B49EECBF314E34A30EEBDA /* CDVLocation.m in Sources */,
+				F783E9891E3545A3B153EF4B /* CDVSplashScreen.m in Sources */,
+				7E782E883BB84CE59AAF2C9F /* CDVViewController+SplashScreen.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

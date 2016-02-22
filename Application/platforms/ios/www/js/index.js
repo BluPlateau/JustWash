@@ -37,6 +37,9 @@ var app = {
 	},
 	// Update DOM on a Received Event
 	receivedEvent: function(id) {
+		setTimeout(function() {
+		    navigator.splashscreen.hide();
+		}, 5000);
 		// start to initialize PayPalMobile library
 		app.initPaymentUI();
 	},
@@ -81,6 +84,8 @@ var app = {
 		var profileSharingBtn = document.getElementById("profileSharingBtn");
 
 		buyNowBtn.onclick = function(e) {
+			// Global Variables
+			var	apiUrl;
 			// parameters for invoicing
 			// Collecting Values
 			var	customerFullName 					=	$("#customerdetails").find("input[name='fullname']").val(),
@@ -99,8 +104,17 @@ var app = {
 				localStorage.setItem("hours",customerHours);
 				localStorage.setItem("minutes",customerMinutes);
 
-				// Single payment UI
-				PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
+				// Checking the availability
+				$.getJSON("http://justwashapi.gsprasad.com/?email="+customerEmail+"&date="+customerServiceDate+"&time="+customerHours+":"+customerMinutes+"&submit=add_cart",
+				function (data) {
+					if (data == "open") {
+						alert("Payment Should be completed within 10 Minutes to confirm the slot");
+						// Single payment UI
+						PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
+					} else {
+						alert("Requested slot is not availabile");
+					}
+				});
 			} else {
 				alert("All fields with * required");
 			}

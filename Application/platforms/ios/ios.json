@@ -15,6 +15,10 @@
                         {
                             "xml": "<feature name=\"Geolocation\"><param name=\"ios-package\" value=\"CDVLocation\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -39,6 +43,9 @@
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
         },
         "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.gsprasad.justwashapi"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
         }
     },
@@ -83,11 +90,20 @@
             "clobbers": [
                 "navigator.geolocation"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "pluginId": "cordova-plugin-splashscreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
         }
     ],
     "plugin_metadata": {
         "com.paypal.cordova.mobilesdk": "3.1.21",
         "cordova-plugin-whitelist": "1.2.1",
-        "cordova-plugin-geolocation": "2.1.0"
+        "cordova-plugin-geolocation": "2.1.0",
+        "cordova-plugin-splashscreen": "3.1.0"
     }
 }
