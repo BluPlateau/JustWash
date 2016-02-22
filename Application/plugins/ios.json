@@ -15,6 +15,9 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.gsprasad.justwashapi"
         }
     },
     "dependent_plugins": {}
