@@ -7,6 +7,10 @@ jQuery(document).ready(function($){
 	// Global Variables
 	var reg	= new RegExp(" ","g"); // For Substituting spaces in ID Names
 
+	// Preventing Default Action of a click in "li"
+	$(document).on("click", "li >a", function(e) {
+		e.preventDefault();
+	})
 	// Loading Cars Data
 	if ($("#cars").length > 0) {
 		$.getJSON(apiUrl+"?cars",
@@ -117,7 +121,14 @@ jQuery(document).ready(function($){
 		});
 
 		// Getting the user coordinates using "Phonegap Plugin"
-		navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		// Options for Navigation
+		var	options	=	{
+			enableHighAccuracy	:	true, 
+			maximumAge				:	300,
+			timeout								:	5000
+		}; 
+
+		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
 		function onSuccess(position) {
 			// alert("Hello");
@@ -132,8 +143,8 @@ jQuery(document).ready(function($){
 
 		// onError Callback receives a PositionError object
 		function onError(error) {
-		    alert('code: '    + error.code    + '\n' +
-		          'message: ' + error.message + '\n');
+		    alert('We are unable to detect your Location. Please check your "Location Settings" and try again');
+		    window.location.href="jw_sub_services.html";
 		}
 	});
 
@@ -142,6 +153,7 @@ jQuery(document).ready(function($){
 		$( "#datepicker" ).datepicker();
 		var	retrievedLocation		=	localStorage.getItem("currentLocation");
 		$(this).find("input[name='address']").val(retrievedLocation);
+
 	}
 
 	// Loading Invoice Details
@@ -160,7 +172,7 @@ jQuery(document).ready(function($){
 					paidAmount				=	localStorage.getItem("dynamicSubServicePrice"),
 					serviceName				=	localStorage.getItem("dynamicCarName") + " " + localStorage.getItem("dynamicSubServiceName") + " " + localStorage.getItem("dynamicServiceName");
 
-			$.getJSON(apiUrl+"?email="+email+"&invoice_id="+invoiceId+"&date="+serviceDate+"&service_name="+serviceName+"&price="+paidAmount+"&add_invoice=add+invoice");
+			$.getJSON(apiUrl+"?email="+email+"&invoice_id="+invoiceId+"&date="+serviceDate+"&time="+hours+":"+minutes+"&car_type="+localStorage.getItem("dynamicCarName")+"&sub_service_name="+localStorage.getItem("dynamicSubServiceName")+"&service_name="+localStorage.getItem("dynamicServiceName")+"&price="+paidAmount+"&add_invoice=add+invoice");
 			//	Displaying Values
 			$(this).find("input[name='address']").val(retrievedLocation);
 			$(this).find("input[name='fullname']").val(fullName);
@@ -173,7 +185,7 @@ jQuery(document).ready(function($){
 			$(this).find("input[name='invoiceid']").val(invoiceId);
 			$(this).find("input[name='paidamount']").val(paidAmount);
 		} else {
-			alert("Payment unSuccessful")
+			alert("Payment unSuccessful");
 		}
 	}
 })
