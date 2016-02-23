@@ -34,7 +34,7 @@
         Just Wash Team
     </author>
     <content src="index.html" />
-    <preference name="splashscreen" value="none" />
+    <preference name="splashscreen" value="splash" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
@@ -73,24 +73,24 @@
     <icon gap:platform="webos" src="www/icon.png" />
     <icon gap:platform="winphone" src="www/icon.png" />
     <icon gap:platform="winphone" gap:role="background" src="www/icon.png" />
-    <splash src="splash.png" />
-    <splash height="480" platform="ios" src="splash.png" width="320" />
-    <splash height="960" platform="ios" src="splash.png" width="640" />
-    <splash height="1136" platform="ios" src="splash.png.png" width="640" />
-    <splash height="1334" platform="ios" src="splash.png" width="750" />
-    <splash height="2208" platform="ios" src="splash.png" width="1242" />
-    <splash height="1242" platform="ios" src="splash.png" width="2208" />
-    <splash height="1024" platform="ios" src="splash.png" width="768" />
-    <splash height="768" platform="ios" src="splash.png" width="1024" />
-    <splash height="2048" platform="ios" src="splash.png" width="1536" />
-    <splash height="1536" platform="ios" src="splash.png" width="2048" />
-    <splash platform="android" qualifier="ldpi" src="splash.png" />
-    <splash platform="android" qualifier="mdpi" src="splash.png" />
-    <splash platform="android" qualifier="hdpi" src="splash.png" />
-    <splash platform="android" qualifier="xhdpi" src="splash.png" />
-    <splash platform="android" qualifier="fr-xhdpi" src="splash.png" />
-    <splash platform="android" qualifier="port-xxhdpi" src="splash.png" />
-    <splash platform="android" qualifier="land-xxhdpi" src="splash.png" />
+    <gap:splash src="splash.png" />
+    <gap:splash gap:platform="ios" height="480" src="splash.png" width="320" />
+    <gap:splash gap:platform="ios" height="960" src="splash.png" width="640" />
+    <gap:splash height="1136" platform="ios" src="splash.png.pgap:ng" width="640" />
+    <gap:splash gap:platform="ios" height="1334" src="splash.png" width="750" />
+    <gap:splash gap:platform="ios" height="2208" src="splash.png" width="1242" />
+    <gap:splash gap:platform="ios" height="1242" src="splash.png" width="2208" />
+    <gap:splash gap:platform="ios" height="1024" src="splash.png" width="768" />
+    <gap:splash gap:platform="ios" height="768" src="splash.png" width="1024" />
+    <gap:splash gap:platform="ios" height="2048" src="splash.png" width="1536" />
+    <gap:splash gap:platform="ios" height="1536" src="splash.png" width="2048" />
+    <gap:splash gap:platform="android" qualifier="ldpi" src="splash.png" />
+    <gap:splash gap:platform="android" qualifier="mdpi" src="splash.png" />
+    <gap:splash gap:platform="android" qualifier="hdpi" src="splash.png" />
+    <gap:splash gap:platform="android" qualifier="xhdpi" src="splash.png" />
+    <gap:splash gap:platform="android" qualifier="fr-xhdpi" src="splash.png" />
+    <gap:splash gap:platform="android" qualifier="port-xxhdpi" src="splash.png" />
+    <gap:splash gap:platform="android" qualifier="land-xxhdpi" src="splash.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
