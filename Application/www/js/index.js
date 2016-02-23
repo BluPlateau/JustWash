@@ -107,16 +107,19 @@ var app = {
 				// Checking the availability
 				$.getJSON("http://justwashapi.gsprasad.com/?email="+customerEmail+"&date="+customerServiceDate+"&time="+customerHours+":"+customerMinutes+"&submit=add_cart",
 				function (data) {
-					if (data == "open") {
-						alert("Payment Should be completed within 10 Minutes to confirm the slot");
-						// Single payment UI
-						PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
-					} else {
-						alert("Requested slot is not availabile");
-					}
+					$.each(data, function(i, item){
+						var	message	=	item.error;
+						if (message != "FALSE") {
+							alert("Payment Should be completed within 10 Minutes to confirm the slot");
+							// Single payment UI
+							PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
+						} else {
+							alert("Requested slot is not availabile");
+						}
+					})
 				});
 			} else {
-				alert("All fields with * required");
+				alert("All fields are required");
 			}
 		};
 
