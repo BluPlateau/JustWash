@@ -7,18 +7,8 @@
     <author email="support@justwash.com" href="http://bharat99.com">
         Just Wash Team
     </author>
-    <content src="index.html" />
-
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.device-orientation" />
-    <gap:plugin name="org.apache.cordova.dialogs" />
-    <gap:plugin name="org.apache.cordova.core.geolocation" />
-    <gap:plugin name="org.apache.cordova.inappbrowser" />
-    <gap:plugin name="org.apache.cordova.network-information" />
-    <gap:plugin name="org.apache.cordova.splashscreen" />
-    <gap:plugin name="org.apache.cordova.vibration" />
-           
-    <preference name="splashscreen" value="none"/>
+    <content src="index.html" />        
+    <preference name="splashscreen" value="splash"/>
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
@@ -34,6 +24,15 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
     <preference name="splashScreenDelay" value="5000" />
+
+    <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="org.apache.cordova.device-orientation" />
+    <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="org.apache.cordova.core.geolocation" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="org.apache.cordova.network-information" />
+    <gap:plugin name="org.apache.cordova.splashscreen" />
+    <gap:plugin name="org.apache.cordova.vibration" />
 
     <!-- Third Party Plugins -->
     <gap:plugin name="com.paypal.cordova.mobilesdk"/>
@@ -55,25 +54,24 @@
     <icon gap:platform="winphone" gap:role="background" src="www/icon.png" />
 
     <!-- iPhone and iPod touch -->
-    <splash src="splash.png" />
-    <splash src="splash.png" platform="ios" width="320" height="480" />
-    <splash src="splash.png" platform="ios" width="640" height="960" />
+    <splash src="Default.png" platform="ios" width="320" height="480" />
+    <splash src="Default@2x.png" platform="ios" width="640" height="960" />
 
     <!-- iPhone 5 / iPod Touch (5th Generation) -->
-    <splash src="splash.png.png" platform="ios" width="640" height="1136" />
+    <splash src="Default-568h@2x.png" platform="ios" width="640" height="1136" />
 
     <!-- iPhone 6 -->
-    <splash src="splash.png" platform="ios" width="750" height="1334" />
-    <splash src="splash.png" platform="ios" width="1242" height="2208" />
-    <splash src="splash.png" platform="ios" width="2208" height="1242" />
+    <splash src="Default-667h@2x.png" platform="ios" width="750" height="1334" />
+    <splash src="Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
+    <splash src="Default-Landscape-736h@3x.png" platform="ios" width="2208" height="1242" />
 
     <!-- iPad -->
-    <splash src="splash.png" platform="ios" width="768" height="1024" />
-    <splash src="splash.png" platform="ios" width="1024" height="768" />
+    <splash src="Default-Portrait.png" platform="ios" width="768" height="1024" />
+    <splash src="Default-Landscape.png" platform="ios" width="1024" height="768" />
 
     <!-- Retina iPad -->
-    <splash src="splash.png" platform="ios" width="1536" height="2048" />
-    <splash src="splash.png" platform="ios" width="2048" height="1536" />
+    <splash src="Default-Portrait@2x.png" platform="ios" width="1536" height="2048" />
+    <splash src="Default-Landscape@2x.png" platform="ios" width="2048" height="1536" />
 
     <!-- Android -->
     <splash src="splash.png" platform="android" qualifier="ldpi" />
