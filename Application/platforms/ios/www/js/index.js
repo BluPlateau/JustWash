@@ -80,7 +80,6 @@ var app = {
 	},
 	onPrepareRender : function() {
 		var buyNowBtn = document.getElementById("buyNowBtn");
-
 		buyNowBtn.onclick = function(e) {
 			var	option	=	$("input[name='paymentgateway']:checked").val();
 			if (option == "PayPal") {

@@ -154,18 +154,16 @@ jQuery(document).ready(function($){
 		$( "#datepicker" ).datepicker();
 		var	retrievedLocation		=	localStorage.getItem("currentLocation");
 		$(this).find("input[name='address']").val(retrievedLocation);
-
 		var paymentOption = document.getElementById("paymentoption");
-
 		paymentOption.onclick = function(e) {
 			// parameters for invoicing
 			// Collecting Values
-			var	customerFullName 					=	$("#customerdetails").find("input[name='fullname']").val(),
-					customerEmail 							=	$("#customerdetails").find("input[name='email']").val(),
-					customerPhone 							=	$("#customerdetails").find("input[name='phone']").val(),
-					customerServiceDate 				=	$("#customerdetails").find("input[name='servicedate']").val(),
-					customerHours 							=	$("#customerdetails").find("#hours").val(),
-					customerMinutes 						=	$("#customerdetails").find("#minutes").val();
+			var	customerFullName 		=	$("#customerdetails").find("input[name='fullname']").val(),
+					customerEmail 				=	$("#customerdetails").find("input[name='email']").val(),
+					customerPhone 				=	$("#customerdetails").find("input[name='phone']").val(),
+					customerServiceDate 	=	$("#customerdetails").find("input[name='servicedate']").val(),
+					customerHours 				=	$("#customerdetails").find("#hours").val(),
+					customerMinutes 			=	$("#customerdetails").find("#minutes").val();
 
 			if ((customerFullName && customerEmail && customerPhone && customerServiceDate && customerHours && customerMinutes) != "") {
 				// Storing into localStorage
