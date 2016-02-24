@@ -11,6 +11,7 @@ jQuery(document).ready(function($){
 	$(document).on("click", "li >a", function(e) {
 		e.preventDefault();
 	})
+	
 	// Loading Cars Data
 	if ($("#cars").length > 0) {
 		$.getJSON(apiUrl+"?cars",
@@ -137,7 +138,7 @@ jQuery(document).ready(function($){
 			function(data) {
 				var currentLocation	=	data.results[0].formatted_address;
 				localStorage.setItem("currentLocation",currentLocation);
-				window.location.href="customerdetails.html";
+				window.location.href="jw_customerdetails.html";
 			});
 		}
 
@@ -153,7 +154,44 @@ jQuery(document).ready(function($){
 		$( "#datepicker" ).datepicker();
 		var	retrievedLocation		=	localStorage.getItem("currentLocation");
 		$(this).find("input[name='address']").val(retrievedLocation);
+		var paymentOption = document.getElementById("paymentoption");
+		paymentOption.onclick = function(e) {
+			// parameters for invoicing
+			// Collecting Values
+			var	customerFullName 		=	$("#customerdetails").find("input[name='fullname']").val(),
+					customerEmail 				=	$("#customerdetails").find("input[name='email']").val(),
+					customerPhone 				=	$("#customerdetails").find("input[name='phone']").val(),
+					customerServiceDate 	=	$("#customerdetails").find("input[name='servicedate']").val(),
+					customerHours 				=	$("#customerdetails").find("#hours").val(),
+					customerMinutes 			=	$("#customerdetails").find("#minutes").val();
 
+			if ((customerFullName && customerEmail && customerPhone && customerServiceDate && customerHours && customerMinutes) != "") {
+				// Storing into localStorage
+				localStorage.setItem("fullName",customerFullName),
+				localStorage.setItem("email",customerEmail);
+				localStorage.setItem("phone",customerPhone);
+				localStorage.setItem("servicedate",customerServiceDate);
+				localStorage.setItem("hours",customerHours);
+				localStorage.setItem("minutes",customerMinutes);
+
+				// Checking the availability
+				$.getJSON("http://justwashapi.gsprasad.com/?email="+customerEmail+"&date="+customerServiceDate+"&time="+customerHours+":"+customerMinutes+"&submit=add_cart",
+				function (data) {
+					$.each(data, function(i, item){
+						var	message	=	item.error;
+						if (message != "FALSE") {
+							alert("Payment Type should be confirmed within 10 minutes to confirm the order.");
+							//Redirecting to Payment Gateway
+							window.location.href = "jw_paymentgateway.html";
+						} else {
+							alert("Requested slot is not availabile");
+						}
+					})
+				});
+			} else {
+				alert("All fields are required");
+			}
+		}
 	}
 
 	// Loading Invoice Details
