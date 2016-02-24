@@ -58,7 +58,7 @@ var app = {
 				localStorage.setItem("paymentStatus", item.state);
 			}
 		});
-		window.location.href = "invoice.html";
+		window.location.href = "jw_invoice.html";
 	},
 	onAuthorizationCallback : function(authorization) {
 		alert("authorization: " + JSON.stringify(authorization, null, 4));
@@ -80,57 +80,18 @@ var app = {
 	},
 	onPrepareRender : function() {
 		var buyNowBtn = document.getElementById("buyNowBtn");
-		var buyInFutureBtn = document.getElementById("buyInFutureBtn");
-		var profileSharingBtn = document.getElementById("profileSharingBtn");
 
 		buyNowBtn.onclick = function(e) {
-			// Global Variables
-			var	apiUrl;
-			// parameters for invoicing
-			// Collecting Values
-			var	customerFullName 					=	$("#customerdetails").find("input[name='fullname']").val(),
-					customerEmail 							=	$("#customerdetails").find("input[name='email']").val(),
-					customerPhone 							=	$("#customerdetails").find("input[name='phone']").val(),
-					customerServiceDate 				=	$("#customerdetails").find("input[name='servicedate']").val(),
-					customerHours 							=	$("#customerdetails").find("#hours").val(),
-					customerMinutes 						=	$("#customerdetails").find("#minutes").val();
-
-			if ((customerFullName && customerEmail && customerPhone && customerServiceDate && customerHours && customerMinutes) != "") {
-				// Storing into localStorage
-				localStorage.setItem("fullName",customerFullName),
-				localStorage.setItem("email",customerEmail);
-				localStorage.setItem("phone",customerPhone);
-				localStorage.setItem("servicedate",customerServiceDate);
-				localStorage.setItem("hours",customerHours);
-				localStorage.setItem("minutes",customerMinutes);
-
-				// Checking the availability
-				$.getJSON("http://justwashapi.gsprasad.com/?email="+customerEmail+"&date="+customerServiceDate+"&time="+customerHours+":"+customerMinutes+"&submit=add_cart",
-				function (data) {
-					$.each(data, function(i, item){
-						var	message	=	item.error;
-						if (message != "FALSE") {
-							alert("Payment Should be completed within 10 Minutes to confirm the slot");
-							// Single payment UI
-							PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
-						} else {
-							alert("Requested slot is not availabile");
-						}
-					})
-				});
-			} else {
-				alert("All fields are required");
+			var	option	=	$("input[name='paymentgateway']:checked").val();
+			if (option == "PayPal") {
+				// Single payment UI
+				PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
+			} else if(option == "COD") {
+				localStorage.setItem("invoiceId", "COD-548528Y643G643");
+				localStorage.setItem("paymentStatus", "approved");
+				// Redirecting to invoice page
+				window.location.href = "jw_invoice.html";
 			}
-		};
-
-		buyInFutureBtn.onclick = function(e) {
-			// future payment
-			PayPalMobile.renderFuturePaymentUI(app.onAuthorizationCallback, app.onUserCanceled);
-		};
-
-		profileSharingBtn.onclick = function(e) {
-			// profile sharing
-			PayPalMobile.renderProfileSharingUI(["profile", "email", "phone", "address", "futurepayments", "paypalattributes"], app.onAuthorizationCallback, app.onUserCanceled);
 		};
 	},
 	onPayPalMobileInit : function() {

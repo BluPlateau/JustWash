@@ -53,9 +53,9 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "com.paypal.cordova.mobilesdk": "3.1.21",
-    "cordova-plugin-whitelist": "1.2.1",
     "cordova-plugin-geolocation": "2.1.0",
-    "cordova-plugin-splashscreen": "3.1.0"
+    "cordova-plugin-splashscreen": "3.1.0",
+    "cordova-plugin-whitelist": "1.2.1"
 }
 // BOTTOM OF METADATA
 });

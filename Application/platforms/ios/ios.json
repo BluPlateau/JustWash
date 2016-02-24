@@ -39,13 +39,13 @@
         "com.paypal.cordova.mobilesdk": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
         },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.gsprasad.justwashapi"
-        },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
         },
         "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.gsprasad.justwashapi"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
         }
     },
@@ -102,8 +102,8 @@
     ],
     "plugin_metadata": {
         "com.paypal.cordova.mobilesdk": "3.1.21",
-        "cordova-plugin-whitelist": "1.2.1",
         "cordova-plugin-geolocation": "2.1.0",
-        "cordova-plugin-splashscreen": "3.1.0"
+        "cordova-plugin-splashscreen": "3.1.0",
+        "cordova-plugin-whitelist": "1.2.1"
     }
 }
