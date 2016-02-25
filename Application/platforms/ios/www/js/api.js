@@ -20,11 +20,12 @@ jQuery(document).ready(function($){
 				reg;
 				var	carId			=	item.value1,
 						carName	=	item.value2;
-						carImage	=	item.value3;
+						carImage	=	apiUrl + "/uploads/cars/" + item.value3;
 						logicalCarName	=	carName.replace(reg,"");
 				// Populating the "Cars items" list
 				$("#cars").clone().attr("id",logicalCarName).appendTo(".list-events");
 				$("#"+logicalCarName).find(".car-title").attr("carId",carId).text(carName);
+				$("#"+logicalCarName).find(".image-calendar-event >img").attr("src",carImage);
 			});
 			// Hiding the Cars List Template
 			$("#cars").css("display","none");
@@ -48,13 +49,14 @@ jQuery(document).ready(function($){
 				reg;
 				var	serviceId					=	item.value1,
 						service						=	item.value2,
-						serviceImage			=	item.value3,
+						serviceImage			=	apiUrl + "/uploads/services/" + item.value3,
 						description				=	item.value4,
 						logicalService		=	service.replace(reg,"");
 				// Populating the "Service items" list
 				$("#services").clone().attr("id",logicalService).appendTo(".list-events");
 				$("#"+logicalService).find(".service-title").attr("serviceId",serviceId).text(service);
 				$("#"+logicalService).find(".description-new").text(description);
+				$("#"+logicalService).find(".image-calendar-event >img").attr("src",serviceImage);
 			});
 			// Hiding the Services List Template
 			$("#services").css("display","none");
@@ -80,7 +82,7 @@ jQuery(document).ready(function($){
 				var	subServiceId				=	item.value1,
 						subService					=	item.value2,
 						description					=	item.value3,
-						subServiceImage		=	item.value4,
+						subServiceImage		=	apiUrl + "/uploads/subservices/" + item.value4,
 						price								=	item.value5,
 						logicalSubService	=	subService.replace(reg,"");
 				// Populating the "Sub Service items" list
@@ -89,6 +91,7 @@ jQuery(document).ready(function($){
 				$("#"+logicalSubService).find(".sub-service-title").text(subService);
 				$("#"+logicalSubService).find(".description-new").text(description);
 				$("#"+logicalSubService).find(".book").attr("sub_service_id",subServiceId);
+				$("#"+logicalSubService).find(".image-news > img").attr("src",subServiceImage);
 			});
 			// Hiding the Sub Services List Template
 			$("#sub-services").css("display","none");
