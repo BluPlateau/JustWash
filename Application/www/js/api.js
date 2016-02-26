@@ -16,36 +16,28 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-// var api = {
-// 	// Application Constructor
-// 	initialize: function() {
-// 		this.bindEvents();
-// 	},
-// 	// Bind Event Listeners
-// 	//
-// 	// Bind any events that are required on startup. Common events are:
-// 	// 'load', 'deviceready', 'offline', and 'online'.
-// 	bindEvents: function() {
-// 		document.addEventListener('deviceready', this.onDeviceReady, false);
-// 	},
-// 	// deviceready Event Handler
-// 	//
-// 	// The scope of 'this' is the event. In order to call the 'receivedEvent'
-// 	// function, we must explicitly call 'app.receivedEvent(...);'
-// 	onDeviceReady: function() {
-// 		// navigator.notification.alert(
-// 		// 'Payment Type should be confirmed within 10 minutes to confirm the order.',
-// 		// '',
-// 		// 'Just Wash',
-// 		// 'OK'
-// 		// );
-// 	}
-// };
-
-// api.initialize();
 
 jQuery(document).ready(function($){
 	//body
+
+	/* Plugins Intialization */
+	
+	// EventListner
+	document.addEventListener("deviceready", onDeviceReady, true);
+
+	// Device Ready
+	function onDeviceReady() {
+		document.addEventListener("offline", onOffline, false);
+		function onOffline() {
+			// Handle the offline event
+			navigator.notification.alert(
+				"Check your Internet",
+				function() {},
+				"Just Wash",
+				"Ok"
+			);
+		}
+	}
 
 	//API
 	var apiUrl		=	"http://justwashapi.gsprasad.com";

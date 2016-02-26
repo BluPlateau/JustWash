@@ -21,6 +21,9 @@
         },
         "cordova-plugin-dialogs": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.gsprasad.justwashapi"
         }
     },
     "dependent_plugins": {}
