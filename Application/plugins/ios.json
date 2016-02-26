@@ -18,6 +18,9 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.gsprasad.justwashapi"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.gsprasad.justwashapi"
         }
     },
     "dependent_plugins": {}
