@@ -99,7 +99,13 @@ var app = {
 		PayPalMobile.prepareToRender("PayPalEnvironmentSandbox", app.configuration(), app.onPrepareRender);
 	},
 	onUserCanceled : function(result) {
-		alert(result);
+		// alert(result);
+		navigator.notification.alert(
+			result,
+			function(){},
+			'PayPal',
+			'Done'
+		);
 	}
 };
 app.initialize();
