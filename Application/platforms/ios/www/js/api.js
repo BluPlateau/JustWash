@@ -20,7 +20,7 @@
 jQuery(document).ready(function($){
 	//body
 
-	// Plugins Intialization
+	/* Required Plugins Intialization */
 
 	// EventListner
 	document.addEventListener("deviceready", onDeviceReady, true);
@@ -46,9 +46,9 @@ jQuery(document).ready(function($){
 	var reg	= new RegExp(" ","g"); // For Substituting spaces in ID Names
 
 	// Preventing Default Action of a click in "li"
-	$(document).on("click", "li >a", function(e) {
-		e.preventDefault();
-	})
+	// $(document).on("click", "li >a", function(e) {
+	// 	e.preventDefault();
+	// })
 	
 	// Loading Cars Data
 	if ($("#cars").length > 0) {
@@ -62,7 +62,8 @@ jQuery(document).ready(function($){
 						logicalCarName	=	carName.replace(reg,"");
 				// Populating the "Cars items" list
 				$("#cars").clone().attr("id",logicalCarName).appendTo(".list-events");
-				$("#"+logicalCarName).find(".car-title").attr("carId",carId).text(carName);
+				$("#"+logicalCarName).find(".car-title").text(carName);
+				$("#"+logicalCarName).find(".car-block").attr("carId",carId);
 				$("#"+logicalCarName).find(".image-calendar-event >img").attr("src",carImage);
 			});
 			// Hiding the Cars List Template
@@ -71,7 +72,7 @@ jQuery(document).ready(function($){
 	}
 	
 	// Requesting Service Data based on selected "Car Type"
-	$(document).on("click",".car-title",function(e) {
+	$(document).on("click",".car-block",function(e) {
 		e.preventDefault();
 		var	currentCarId	=	$(this).attr("carId");
 		localStorage.setItem("dynamicCarId", currentCarId);
@@ -92,7 +93,8 @@ jQuery(document).ready(function($){
 						logicalService		=	service.replace(reg,"");
 				// Populating the "Service items" list
 				$("#services").clone().attr("id",logicalService).appendTo(".list-events");
-				$("#"+logicalService).find(".service-title").attr("serviceId",serviceId).text(service);
+				$("#"+logicalService).find(".service-title").text(service);
+				$("#"+logicalService).find(".service-block").attr("serviceId",serviceId);
 				$("#"+logicalService).find(".description-new").text(description);
 				$("#"+logicalService).find(".image-calendar-event >img").attr("src",serviceImage);
 			});
@@ -102,7 +104,7 @@ jQuery(document).ready(function($){
 	}
 
 	// Requesting Sub Service Data based on selected "Service Type"
-	$(document).on("click",".service-title",function(e) {
+	$(document).on("click",".service-block",function(e) {
 		e.preventDefault();
 		var	currentServiceId	=	$(this).attr("serviceId");
 		localStorage.setItem("dynamicServiceId",currentServiceId);
@@ -168,7 +170,7 @@ jQuery(document).ready(function($){
 			enableHighAccuracy	:	true, 
 			maximumAge				:	300,
 			timeout								:	5000
-		}; 
+		};
 
 		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
@@ -184,8 +186,13 @@ jQuery(document).ready(function($){
 
 		// onError Callback receives a PositionError object
 		function onError(error) {
-		    alert('We are unable to detect your Location. Please check your "Location Settings" and try again');
-		    window.location.href="jw_sub_services.html";
+			// navigator.notification.alert(
+			// 	"We are unable to detect your Location. Please check your GPS Settings",
+			// 	function(){},
+			// 	"Just Wash",
+			// 	"OK"
+			// );
+			alert("We are unable to detect your Location. Please check your GPS Settings");
 		}
 	});
 
@@ -287,13 +294,15 @@ jQuery(document).ready(function($){
 			$(this).find("input[name='paidamount']").val(paidAmount);
 		} else {
 			//eventListners
-			document.addEventListener("deviceready", onDeviceReady, true);
-			navigator.notification.alert(
-				'Booking Failed',
-				function(){},
-				'Just Wash',
-				'OK'
-			);
+			// document.addEventListener("deviceready", onDeviceReady, true);
+			// function onDeviceReady() {
+			// 	navigator.notification.alert(
+			// 		'Booking Failed',
+			// 		function(){},
+			// 		'Just Wash',
+			// 		'OK'
+			// 	);
+			// }
 		}
 	}
 });
