@@ -66,6 +66,8 @@
 		1E07CCAD71FE4E2188FFC6E7 /* CDVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 02695C241CAA4C3CB07377F8 /* CDVLocation.m */; };
 		0592F33F2CF04A08A019CF3A /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC013A4484B451299E0A8B8 /* CDVSplashScreen.m */; };
 		5707A442FAE94236B562A30A /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BC086094CB66408A9A9656FC /* CDVViewController+SplashScreen.m */; };
+		427BAC39D2AE4898B4259E49 /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 989C6F3ADF8A49EA9CE6D870 /* CDVNotification.m */; };
+		FB4F0A76BC69429F85BF9578 /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F4D66A86ED84236A9286654 /* CDVNotification.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +171,9 @@
 		BC086094CB66408A9A9656FC /* CDVViewController+SplashScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVViewController+SplashScreen.m"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		D86A15254D5648D19A97E9EC /* CDVSplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVSplashScreen.h"; path = "cordova-plugin-splashscreen/CDVSplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		EFB3963AA261425DB92F5D0C /* CDVViewController+SplashScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVViewController+SplashScreen.h"; path = "cordova-plugin-splashscreen/CDVViewController+SplashScreen.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		989C6F3ADF8A49EA9CE6D870 /* CDVNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVNotification.m"; path = "cordova-plugin-dialogs/CDVNotification.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		10435179C95947BCAFB010F4 /* CDVNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVNotification.h"; path = "cordova-plugin-dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		4F4D66A86ED84236A9286654 /* CDVNotification.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "CDVNotification.bundle"; path = "CDVNotification.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +269,7 @@
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* Just Wash-Info.plist */,
+				4F4D66A86ED84236A9286654 /* CDVNotification.bundle */,
 			);
 			name = Resources;
 			path = "Just Wash/Resources";
@@ -328,6 +334,8 @@
 				BC086094CB66408A9A9656FC /* CDVViewController+SplashScreen.m */,
 				D86A15254D5648D19A97E9EC /* CDVSplashScreen.h */,
 				EFB3963AA261425DB92F5D0C /* CDVViewController+SplashScreen.h */,
+				989C6F3ADF8A49EA9CE6D870 /* CDVNotification.m */,
+				10435179C95947BCAFB010F4 /* CDVNotification.h */,
 			);
 			name = Plugins;
 			path = "Just Wash/Plugins";
@@ -481,6 +489,7 @@
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
+				FB4F0A76BC69429F85BF9578 /* CDVNotification.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +525,7 @@
 				1E07CCAD71FE4E2188FFC6E7 /* CDVLocation.m in Sources */,
 				0592F33F2CF04A08A019CF3A /* CDVSplashScreen.m in Sources */,
 				5707A442FAE94236B562A30A /* CDVViewController+SplashScreen.m in Sources */,
+				427BAC39D2AE4898B4259E49 /* CDVNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

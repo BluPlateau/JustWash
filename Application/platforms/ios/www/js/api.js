@@ -1,3 +1,49 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+// var api = {
+// 	// Application Constructor
+// 	initialize: function() {
+// 		this.bindEvents();
+// 	},
+// 	// Bind Event Listeners
+// 	//
+// 	// Bind any events that are required on startup. Common events are:
+// 	// 'load', 'deviceready', 'offline', and 'online'.
+// 	bindEvents: function() {
+// 		document.addEventListener('deviceready', this.onDeviceReady, false);
+// 	},
+// 	// deviceready Event Handler
+// 	//
+// 	// The scope of 'this' is the event. In order to call the 'receivedEvent'
+// 	// function, we must explicitly call 'app.receivedEvent(...);'
+// 	onDeviceReady: function() {
+// 		// navigator.notification.alert(
+// 		// 'Payment Type should be confirmed within 10 minutes to confirm the order.',
+// 		// '',
+// 		// 'Just Wash',
+// 		// 'OK'
+// 		// );
+// 	}
+// };
+
+// api.initialize();
+
 jQuery(document).ready(function($){
 	//body
 
@@ -135,7 +181,6 @@ jQuery(document).ready(function($){
 		navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
 
 		function onSuccess(position) {
-			// alert("Hello");
 			var coords = position.coords.latitude + "," + position.coords.longitude;
 			$.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords,
 			function(data) {
@@ -182,17 +227,40 @@ jQuery(document).ready(function($){
 				function (data) {
 					$.each(data, function(i, item){
 						var	message	=	item.error;
-						if (message != "FALSE") {
-							alert("Payment Type should be confirmed within 10 minutes to confirm the order.");
-							//Redirecting to Payment Gateway
-							window.location.href = "jw_paymentgateway.html";
-						} else {
-							alert("Requested slot is not availabile");
+						//eventListners
+						document.addEventListener("deviceready", onDeviceReady, true);
+						function onDeviceReady () {
+							if (message != "FALSE") {
+								navigator.notification.alert(
+									'Payment Type should be confirmed within 10 minutes to confirm the order.',
+									function(){},
+									'Just Wash',
+									'OK'
+								);
+								//Redirecting to Payment Gateway
+								window.location.href = "jw_paymentgateway.html";
+							} else {
+								navigator.notification.alert(
+									'Requested slot is not available',
+									function(){},
+									'Just Wash',
+									'OK'
+								);
+							}
 						}
 					})
 				});
 			} else {
-				alert("All fields are required");
+				//eventListners
+				document.addEventListener("deviceready", onDeviceReady, true);
+				function onDeviceReady () {
+					navigator.notification.alert(
+						'All fields are required',
+						function(){},
+						'Just Wash',
+						'OK'
+					);
+				}
 			}
 		}
 	}
@@ -226,7 +294,14 @@ jQuery(document).ready(function($){
 			$(this).find("input[name='invoiceid']").val(invoiceId);
 			$(this).find("input[name='paidamount']").val(paidAmount);
 		} else {
-			alert("Payment unSuccessful");
+			//eventListners
+			document.addEventListener("deviceready", onDeviceReady, true);
+			navigator.notification.alert(
+				'Booking Failed',
+				function(){},
+				'Just Wash',
+				'OK'
+			);
 		}
 	}
-})
+});
