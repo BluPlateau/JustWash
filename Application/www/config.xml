@@ -37,10 +37,6 @@
     <!-- Third Party Plugins -->
     <gap:plugin name="com.paypal.cordova.mobilesdk"/>
 
-    <feature name="Geolocation">
-        <param name="ios-package" value="CDVLocation" />
-    </feature>
-
     <!-- Icons -->
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/icon.png" />

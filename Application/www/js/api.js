@@ -196,6 +196,7 @@ jQuery(document).ready(function($){
 					'JustWash',
 					'OK'
 				);
+				$('.loading-background').css("display","none");
 			}
 		}
 	});
@@ -206,6 +207,7 @@ jQuery(document).ready(function($){
 		var	retrievedLocation		=	localStorage.getItem("currentLocation");
 		$(this).find("input[name='address']").val(retrievedLocation);
 		var paymentOption = document.getElementById("paymentoption");
+		$('.loading-background').css("display","none");
 		paymentOption.onclick = function(e) {
 			// parameters for invoicing
 			// Collecting Values
@@ -225,6 +227,8 @@ jQuery(document).ready(function($){
 				localStorage.setItem("hours",customerHours);
 				localStorage.setItem("minutes",customerMinutes);
 
+				$('.loading-background').css("display","block");
+
 				// Checking the availability
 				$.getJSON(apiUrl+"/?email="+customerEmail+"&date="+customerServiceDate+"&time="+customerHours+":"+customerMinutes+"&submit=add_cart",
 				function (data) {
@@ -234,26 +238,29 @@ jQuery(document).ready(function($){
 						document.addEventListener("deviceready", onDeviceReady, true);
 						function onDeviceReady () {
 							if (message != "FALSE") {
-								navigator.notification.alert(
+								function redirect(buttonIndex) {
+									if(buttonIndex == 2) {
+										//Redirecting to Payment Gateway
+										window.location.href = "jw_paymentgateway.html";
+									}
+								}
+								navigator.notification.confirm(
 									'Payment Type should be confirmed within 10 minutes to confirm the order.',
-									function(){},
+									redirect,
 									'JustWash',
-									'OK'
+									['Don\'t Agree','Agree']
 								);
-								//Redirecting to Payment Gateway
-								window.location.href = "jw_paymentgateway.html";
 							} else {
 								navigator.notification.alert(
 									'Requested slot is not available',
-									function(){
-										window.location.href	=	"jw_sub_services.html";
-									},
+									function(){},
 									'JustWash',
 									'OK'
 								);
 							}
 						}
 					})
+					$('.loading-background').css("display","none");
 				});
 			} else {
 				//eventListners
@@ -310,5 +317,6 @@ jQuery(document).ready(function($){
 			// 	);
 			// }
 		}
+		$('.loading-background').css("display","none");
 	}
 });
