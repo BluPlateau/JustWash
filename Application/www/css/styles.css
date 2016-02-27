@@ -70,7 +70,7 @@ p {
 }
 a {
   width: 100%;
-  color: #333;
+  color: #0475FE;
   text-decoration: none;
 }
 .button {
@@ -699,6 +699,18 @@ a {
   width: 100%;
   height: 100%;
 }
+.loading-background {
+  z-index: 50;
+  display: block;
+  background-color: black;
+  -webkit-transition: opacity 250ms linear;
+  transition: opacity 250ms linear;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.72);
+  width: inherit;
+  height: 100vh;
+  background-color: #151D31;
+}
 .page-content.loading-mask {
   position: fixed;
   z-index: 50;
@@ -709,6 +721,7 @@ a {
   transition: opacity 250ms linear;
   text-align: center;
   color: rgba(255, 255, 255, 0.72);
+  width: inherit;
 }
 .page-content.loading-mask.stop-loading {
   opacity: 0;
@@ -840,8 +853,8 @@ a {
   list-style-type: none;
 }
 .list-item-new {
-  margin-bottom: 25px;
-  box-shadow: #e3e3e3 0px 0px 6px 0px;
+	margin-bottom: 25px;
+	box-shadow: #151D31 0px 0px 6px 0px;
 }
 .image-new {
   position: relative;
@@ -892,9 +905,10 @@ a {
   font-size: 11px;
 }
 pre.description-new {
-  margin-top: 5px !important;
-  font-family: initial;
-  line-height: 20px;
+	margin-top: 5px !important;
+	font-family: initial;
+	line-height: 20px;
+	color: #151D31;
 }
 .description-new.larger {
   font-size: 13px;
@@ -961,14 +975,14 @@ pre.description-new {
   border-top: 1px solid #e6e6e6;
 }
 .small-button {
-  width: auto;
-  margin-right: 12px;
-  padding: 7px 16px;
-  border-radius: 2px;
-  background-color: #ff274a;
-  color: white;
-  font-size: 10px;
-  text-decoration: none;
+	width: auto;
+	margin-right: 12px;
+	padding: 7px 16px;
+	border-radius: 2px;
+	background-color: #151D31;
+	color: white;
+	font-size: 10px;
+	text-decoration: none;
 }
 .small-button.icon-only {
   padding-right: 7px;
@@ -1284,11 +1298,14 @@ pre.description-new {
   background-image: linear-gradient(343deg, #4c68b1, black 82%);
 }
 .list-calendar-events {
-  margin-right: 20px;
-  margin-left: 20px;
-  padding-top: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #e7e7e9;
+	margin-right: 20px;
+	margin-left: 20px;
+	padding-top: 10px !important;
+	padding-bottom: 5px !important;
+	border: 1px solid #949494;
+	margin-top: 10px;
+	padding: 20px;
+	border-radius: 12px;
 }
 .calendar-col-left {
   width: 100%;

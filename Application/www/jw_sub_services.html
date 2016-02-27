@@ -23,13 +23,13 @@
 							<div class="nav-menu-header">
 								<div class="logo">Just Wash Services</div>
 							</div>
-							<a class="w-clearfix w-inline-block nav-menu-link" href="index.html" data-load="1">
+							<a class="w-clearfix w-inline-block nav-menu-link" href="index.html">
 								<div class="icon-list-menu">
 									<div class="icon ion-model-s"></div>
 								</div>
 								<div class="nav-menu-titles">Car Washes</div>
 							</a>
-							<div class="w-dropdown dropdown-container" data-delay="0">
+							<div class="w-dropdown dropdown-container">
 								<div class="w-dropdown-toggle w-clearfix nav-menu-link dropdown w--open">
 									<div class="icon-list-menu">
 											<div class="icon ion-ios-home-outline"></div>
@@ -38,28 +38,28 @@
 									<div class="w-icon-dropdown-toggle dropdown-icon"></div>
 								</div>
 								<nav class="w-dropdown-list drop-down-list w--open">
-									<a class="w-clearfix w-inline-block nav-menu-link" href="jw_invoices.html" data-load="1">
+									<a class="w-clearfix w-inline-block nav-menu-link" href="jw_invoices.html">
 										<div class="icon-list-menu">
 											<div class="icon ion-printer"></div>
 										</div>
 										<div class="nav-menu-titles">Invoices</div>
 										<div class="nav-menu-text-right">3</div>
 									</a>
-									<a class="w-clearfix w-inline-block nav-menu-link" href="jw_services_status.html" data-load="1">
+									<a class="w-clearfix w-inline-block nav-menu-link" href="jw_services_status.html">
 										<div class="icon-list-menu">
 											<div class="icon ion-grid"></div>
 										</div>
 										<div class="nav-menu-titles">Service(s) Status</div>
 										<div class="nav-menu-text-right">6</div>
 									</a>
-									<a class="w-clearfix w-inline-block nav-menu-link" href="jw_checkout.html" data-load="1">
+									<a class="w-clearfix w-inline-block nav-menu-link" href="jw_checkout.html">
 										<div class="icon-list-menu">
 											<div class="icon ion-bag"></div>
 										</div>
 										<div class="nav-menu-titles">Checkout</div>
 										<div class="nav-menu-text-right">1</div>
 									</a>
-									<a class="w-clearfix w-inline-block nav-menu-link" href="jw_settings.html" data-load="1">
+									<a class="w-clearfix w-inline-block nav-menu-link" href="jw_settings.html">
 										<div class="icon-list-menu">
 											<div class="icon ion-ios-gear-outline"></div>
 										</div>
@@ -67,13 +67,13 @@
 									</a>
 								</nav>
 							</div>
-						<a class="w-clearfix w-inline-block nav-menu-link" href="index.html" data-load="1">
+						<a class="w-clearfix w-inline-block nav-menu-link" href="index.html">
 							<div class="icon-list-menu">
 									<div class="icon ion-ios-person-outline"></div>
 							</div>
 							<div class="nav-menu-titles">Logout</div>
 						</a>
-						<a class="w-clearfix w-inline-block nav-menu-link" href="jw_rateus.html" data-load="1">
+						<a class="w-clearfix w-inline-block nav-menu-link" href="jw_rateus.html">
 							<div class="icon-list-menu">
 									<div class="icon ion-android-star-half"></div>
 							</div>
@@ -101,10 +101,15 @@
 				</div>
 			</div>
 				</div>
+			<div class="loading-background" id="new-stack">
+				<div class="loading-icon">
+					<div class="navbar-button-icon icon ion-load-d"></div>
+				</div>
+			</div>
 				<div class="news-container">
 					<ul class="w-clearfix list-news">
 						<!-- Start:Sub Services template -->
-						<li class="list-item-new" id="sub-services">
+						<li class="list-item-new" id="sub-services" style="display:none;">
 							<a class="w-inline-block link-blog-list" href="jw_sub_services.html">
 								<div class="image-news">
 									<img src="" alt="">
@@ -112,17 +117,17 @@
 								<div class="text-new">
 									<h2 class="title-new sub-service-title"></h2>
 									<pre class="description-new"></pre><br>
-									<a class="w-inline-block small-button">
+									<a class="w-inline-block small-button" style="background-color: #3A8EA1 !important;">
 										<div class="icon-button">
 											<div class="icon">Rs. </div>
 										</div>
 										<div class="text-button price"></div>
 									</a>
-									<a class="w-inline-block small-button" id="book" href="index.html">
+									<a class="w-inline-block small-button" id="book" href="#">
 										<div class="icon-button">
 											<div class="icon ion-ios-plus"></div>
 										</div>
-										<div class="text-button">Booking</div>
+										<div class="text-button">Book</div>
 									</a>
 								</div>
 							</a>
@@ -130,11 +135,6 @@
 						<!-- End: Sub Services template -->
 					</ul>
 				</div>
-			<div class="page-content loading-mask" id="new-stack">
-				<div class="loading-icon">
-					<div class="navbar-button-icon icon ion-load-d"></div>
-				</div>
-			</div>
 			</section>
 		</div>
 	</div>
@@ -146,10 +146,10 @@
 					}
 			});
 	</script>
-	<script type="text/javascript" src="js/modernizr.js"></script>
+	<!-- <script type="text/javascript" src="js/modernizr.js"></script> -->
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/framework.js"></script>
-	<script type="text/javascript" src="js/scripts.js"></script>
+	<!-- <script type="text/javascript" src="js/framework.js"></script> -->
+	<!-- <script type="text/javascript" src="js/scripts.js"></script> -->
     <script type="text/javascript" src="cordova.js"></script>
 	<script type="text/javascript" src="js/api.js"></script>
 	<!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
