@@ -40,7 +40,8 @@ jQuery(document).ready(function($){
 	}
 
 	//API
-	var apiUrl		=	"http://justwashapi.gsprasad.com";
+	var apiUrl				=	"http://justwashapi.gsprasad.com",
+			uploadUrl		=	"http://uploads.justwash.gsprasad.com"
 
 	// Global Variables
 	var reg	= new RegExp(" ","g"); // For Substituting spaces in ID Names
@@ -58,7 +59,7 @@ jQuery(document).ready(function($){
 				reg;
 				var	carId			=	item.value1,
 						carName	=	item.value2;
-						carImage	=	apiUrl + "/uploads/cars/" + item.value3;
+						carImage	=	uploadUrl + "/admin_cars/car_uploads/" + item.value3;
 						logicalCarName	=	carName.replace(reg,"");
 				// Populating the "Cars items" list
 				$("#cars").clone().attr("id",logicalCarName).appendTo(".list-events");
@@ -88,7 +89,7 @@ jQuery(document).ready(function($){
 				reg;
 				var	serviceId					=	item.value1,
 						service						=	item.value2,
-						serviceImage			=	apiUrl + "/uploads/services/" + item.value3,
+						serviceImage			=	uploadUrl + "/admin_washtype/service_uploads/" + item.value3,
 						description				=	item.value4,
 						logicalService		=	service.replace(reg,"");
 				// Populating the "Service items" list
@@ -122,7 +123,7 @@ jQuery(document).ready(function($){
 				var	subServiceId				=	item.value1,
 						subService					=	item.value2,
 						description					=	item.value3,
-						subServiceImage		=	apiUrl + "/uploads/subservices/" + item.value4,
+						subServiceImage		=	uploadUrl + "/admin_washarea/subservice_uploads/" + item.value4,
 						price								=	item.value5,
 						logicalSubService	=	subService.replace(reg,"");
 				// Populating the "Sub Service items" list
