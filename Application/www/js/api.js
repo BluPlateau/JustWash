@@ -132,7 +132,7 @@ jQuery(document).ready(function($){
 				$("#"+logicalSubService).find(".price").text(price);
 				$("#"+logicalSubService).find(".sub-service-title").text(subService);
 				$("#"+logicalSubService).find(".description-new").text(description);
-				$("#"+logicalSubService).find(".book").attr("sub_service_id",subServiceId);
+				$("#"+logicalSubService).find("#book").attr("sub_service_id",subServiceId);
 				$("#"+logicalSubService).find(".image-news > img").attr("src",subServiceImage);
 			});
 			$('.loading-background').css("display","none");
@@ -153,6 +153,7 @@ jQuery(document).ready(function($){
 		var	dynamicCarId					=	localStorage.getItem("dynamicCarId"),
 				dynamicServiceId			=	localStorage.getItem("dynamicServiceId"),
 				dynamicSubServiceId	=	$(this).attr("sub_service_id");
+				alert(dynamicSubServiceId);
 
 		$.getJSON(apiUrl+"?carid="+dynamicCarId+"&&serviceid="+dynamicServiceId+"&&subserviceid="+dynamicSubServiceId,
 		function(data) {
