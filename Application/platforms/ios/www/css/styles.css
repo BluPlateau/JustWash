@@ -710,6 +710,7 @@ a {
   width: inherit;
   height: 100vh;
   background-color: #151D31;
+  opacity: 0.6;
 }
 .page-content.loading-mask {
   position: fixed;
