@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		079EB7DF4E244062A2F56C6A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DCE2D16F604482A7538C2D /* AVFoundation.framework */; };
 		0FE06D4AA26642188819A85D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D958F3791634F6698ED8FB5 /* CoreVideo.framework */; };
@@ -430,7 +429,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 720;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Just Wash" */;
 			compatibilityVersion = "Xcode 3.2";

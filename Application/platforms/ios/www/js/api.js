@@ -17,35 +17,6 @@
  * under the License.
  */
 
- // var app = {
- //     // Application Constructor
- //     initialize: function() {
- //         this.bindEvents();
- //     },
- //     // Bind Event Listeners
- //     //
- //     // Bind any events that are required on startup. Common events are:
- //     // 'load', 'deviceready', 'offline', and 'online'.
- //     bindEvents: function() {
- //         document.addEventListener('deviceready', this.onDeviceReady, false);
- //     },
- //     // deviceready Event Handler
- //     //
- //     // The scope of 'this' is the event. In order to call the 'receivedEvent'
- //     // function, we must explicitly call 'app.receivedEvent(...);'
- //     onDeviceReady: function() {
- //     	// Handle the offline event
- //     	navigator.notification.alert(
- //     		"Checking",
- //     		function() {},
- //     		"Just Wash",
- //     		"Ok"
- //     	);
- //     }
- // };
-
- // app.initialize();
-
 jQuery(document).ready(function($){
 	//body
 
@@ -62,7 +33,7 @@ jQuery(document).ready(function($){
 			navigator.notification.alert(
 				"Check your Internet",
 				function() {},
-				"Just Wash",
+				"JustWash",
 				"Ok"
 			);
 		}
@@ -91,12 +62,12 @@ jQuery(document).ready(function($){
 						logicalCarName	=	carName.replace(reg,"");
 				// Populating the "Cars items" list
 				$("#cars").clone().attr("id",logicalCarName).appendTo(".list-events");
+				$("#"+logicalCarName).css("display","block");
 				$("#"+logicalCarName).find(".car-title").text(carName);
 				$("#"+logicalCarName).find(".car-block").attr("carId",carId);
 				$("#"+logicalCarName).find(".image-calendar-event >img").attr("src",carImage);
 			});
-			// Hiding the Cars List Template
-			$("#cars").css("display","none");
+			$('.loading-mask').addClass('stop-loading');
 		});
 	}
 	
@@ -122,13 +93,13 @@ jQuery(document).ready(function($){
 						logicalService		=	service.replace(reg,"");
 				// Populating the "Service items" list
 				$("#services").clone().attr("id",logicalService).appendTo(".list-events");
+				$("#"+logicalService).css("display","block");
 				$("#"+logicalService).find(".service-title").text(service);
 				$("#"+logicalService).find(".service-block").attr("serviceId",serviceId);
 				$("#"+logicalService).find(".description-new").text(description);
 				$("#"+logicalService).find(".image-calendar-event >img").attr("src",serviceImage);
 			});
-			// Hiding the Services List Template
-			$("#services").css("display","none");
+			$('.loading-mask').addClass('stop-loading');
 		});
 	}
 
@@ -156,14 +127,14 @@ jQuery(document).ready(function($){
 						logicalSubService	=	subService.replace(reg,"");
 				// Populating the "Sub Service items" list
 				$("#sub-services").clone().attr("id",logicalSubService).appendTo(".list-news");
+				$("#"+logicalSubService).css("display","block");
 				$("#"+logicalSubService).find(".price").text(price);
 				$("#"+logicalSubService).find(".sub-service-title").text(subService);
 				$("#"+logicalSubService).find(".description-new").text(description);
 				$("#"+logicalSubService).find(".book").attr("sub_service_id",subServiceId);
 				$("#"+logicalSubService).find(".image-news > img").attr("src",subServiceImage);
 			});
-			// Hiding the Sub Services List Template
-			$("#sub-services").css("display","none");
+			$('.loading-background').css("display","none");
 		});
 	};
 
@@ -177,7 +148,7 @@ jQuery(document).ready(function($){
 
 	$(document).on("click","#book",function(e) {
 		e.preventDefault();
-
+		$('.loading-background').css("display","block");
 		var	dynamicCarId					=	localStorage.getItem("dynamicCarId"),
 				dynamicServiceId			=	localStorage.getItem("dynamicServiceId"),
 				dynamicSubServiceId	=	$(this).attr("sub_service_id");
@@ -220,9 +191,9 @@ jQuery(document).ready(function($){
 			document.addEventListener("deviceready", onDeviceReady, true);
 			function onDeviceReady () {
 				navigator.notification.alert(
-					'We are unable to detect your Location. Please check your GPS Settings',
+					'We are unable to detect your Location. Please Turn ON Location Services',
 					function(){},
-					'Just Wash',
+					'JustWash',
 					'OK'
 				);
 			}
@@ -266,7 +237,7 @@ jQuery(document).ready(function($){
 								navigator.notification.alert(
 									'Payment Type should be confirmed within 10 minutes to confirm the order.',
 									function(){},
-									'Just Wash',
+									'JustWash',
 									'OK'
 								);
 								//Redirecting to Payment Gateway
@@ -277,7 +248,7 @@ jQuery(document).ready(function($){
 									function(){
 										window.location.href	=	"jw_sub_services.html";
 									},
-									'Just Wash',
+									'JustWash',
 									'OK'
 								);
 							}
@@ -291,7 +262,7 @@ jQuery(document).ready(function($){
 					navigator.notification.alert(
 						'All fields are required',
 						function(){},
-						'Just Wash',
+						'JustWash',
 						'OK'
 					);
 				}
@@ -334,7 +305,7 @@ jQuery(document).ready(function($){
 			// 	navigator.notification.alert(
 			// 		'Booking Failed',
 			// 		function(){},
-			// 		'Just Wash',
+			// 		'JustWash',
 			// 		'OK'
 			// 	);
 			// }
