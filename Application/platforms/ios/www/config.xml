@@ -37,6 +37,10 @@
     <!-- Third Party Plugins -->
     <gap:plugin name="com.paypal.cordova.mobilesdk"/>
 
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
+
     <!-- Icons -->
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/icon.png" />
@@ -74,13 +78,13 @@
     <splash src="Default-Landscape@2x.png" platform="ios" width="2048" height="1536" />
 
     <!-- Android -->
-    <splash src="splash.png" platform="android" qualifier="ldpi" />
-    <splash src="splash.png" platform="android" qualifier="mdpi" />
-    <splash src="splash.png" platform="android" qualifier="hdpi" />
-    <splash src="splash.png" platform="android" qualifier="xhdpi" />
-    <splash src="splash.png" platform="android" qualifier="fr-xhdpi" />
-    <splash src="splash.png" platform="android" qualifier="port-xxhdpi" />
-    <splash src="splash.png" platform="android" qualifier="land-xxhdpi" />
+    <splash src="ldpi.png" platform="android" qualifier="ldpi" />
+    <splash src="mdpi.png" platform="android" qualifier="mdpi" />
+    <splash src="hdpi.png" platform="android" qualifier="hdpi" />
+    <splash src="xhdpi.png" platform="android" qualifier="xhdpi" />
+    <splash src="fr-xhdpi.png" platform="android" qualifier="fr-xhdpi" />
+    <splash src="portrait-xxhdpi.png" platform="android" qualifier="port-xxhdpi" />
+    <splash src="landscape-xxhdpi.png" platform="android" qualifier="land-xxhdpi" />
 
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" version="1" />

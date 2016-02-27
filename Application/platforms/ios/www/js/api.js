@@ -17,6 +17,35 @@
  * under the License.
  */
 
+ // var app = {
+ //     // Application Constructor
+ //     initialize: function() {
+ //         this.bindEvents();
+ //     },
+ //     // Bind Event Listeners
+ //     //
+ //     // Bind any events that are required on startup. Common events are:
+ //     // 'load', 'deviceready', 'offline', and 'online'.
+ //     bindEvents: function() {
+ //         document.addEventListener('deviceready', this.onDeviceReady, false);
+ //     },
+ //     // deviceready Event Handler
+ //     //
+ //     // The scope of 'this' is the event. In order to call the 'receivedEvent'
+ //     // function, we must explicitly call 'app.receivedEvent(...);'
+ //     onDeviceReady: function() {
+ //     	// Handle the offline event
+ //     	navigator.notification.alert(
+ //     		"Checking",
+ //     		function() {},
+ //     		"Just Wash",
+ //     		"Ok"
+ //     	);
+ //     }
+ // };
+
+ // app.initialize();
+
 jQuery(document).ready(function($){
 	//body
 
@@ -46,9 +75,9 @@ jQuery(document).ready(function($){
 	var reg	= new RegExp(" ","g"); // For Substituting spaces in ID Names
 
 	// Preventing Default Action of a click in "li"
-	// $(document).on("click", "li >a", function(e) {
-	// 	e.preventDefault();
-	// })
+	$(document).on("click", "li >a", function(e) {
+		e.preventDefault();
+	})
 	
 	// Loading Cars Data
 	if ($("#cars").length > 0) {
@@ -136,7 +165,7 @@ jQuery(document).ready(function($){
 			// Hiding the Sub Services List Template
 			$("#sub-services").css("display","none");
 		});
-	}
+	};
 
 	/*
 		Requesting "Car, Service, Sub Service Names & Sub Service
@@ -145,7 +174,10 @@ jQuery(document).ready(function($){
 		Geo location is tracked using "Phonegap GeoLocation" & "Google
 		Latlng API"
 	*/
-	$(document).on("click",".book",function() {
+
+	$(document).on("click","#book",function(e) {
+		e.preventDefault();
+
 		var	dynamicCarId					=	localStorage.getItem("dynamicCarId"),
 				dynamicServiceId			=	localStorage.getItem("dynamicServiceId"),
 				dynamicSubServiceId	=	$(this).attr("sub_service_id");
@@ -184,15 +216,16 @@ jQuery(document).ready(function($){
 			});
 		}
 
-		// onError Callback receives a PositionError object
 		function onError(error) {
-			// navigator.notification.alert(
-			// 	"We are unable to detect your Location. Please check your GPS Settings",
-			// 	function(){},
-			// 	"Just Wash",
-			// 	"OK"
-			// );
-			alert("We are unable to detect your Location. Please check your GPS Settings");
+			document.addEventListener("deviceready", onDeviceReady, true);
+			function onDeviceReady () {
+				navigator.notification.alert(
+					'We are unable to detect your Location. Please check your GPS Settings',
+					function(){},
+					'Just Wash',
+					'OK'
+				);
+			}
 		}
 	});
 
@@ -222,7 +255,7 @@ jQuery(document).ready(function($){
 				localStorage.setItem("minutes",customerMinutes);
 
 				// Checking the availability
-				$.getJSON("http://justwashapi.gsprasad.com/?email="+customerEmail+"&date="+customerServiceDate+"&time="+customerHours+":"+customerMinutes+"&submit=add_cart",
+				$.getJSON(apiUrl+"/?email="+customerEmail+"&date="+customerServiceDate+"&time="+customerHours+":"+customerMinutes+"&submit=add_cart",
 				function (data) {
 					$.each(data, function(i, item){
 						var	message	=	item.error;
@@ -241,7 +274,9 @@ jQuery(document).ready(function($){
 							} else {
 								navigator.notification.alert(
 									'Requested slot is not available',
-									function(){},
+									function(){
+										window.location.href	=	"jw_sub_services.html";
+									},
 									'Just Wash',
 									'OK'
 								);
