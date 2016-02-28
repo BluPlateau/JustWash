@@ -153,7 +153,6 @@ jQuery(document).ready(function($){
 		var	dynamicCarId					=	localStorage.getItem("dynamicCarId"),
 				dynamicServiceId			=	localStorage.getItem("dynamicServiceId"),
 				dynamicSubServiceId	=	$(this).attr("sub_service_id");
-				alert(dynamicSubServiceId);
 
 		$.getJSON(apiUrl+"?carid="+dynamicCarId+"&&serviceid="+dynamicServiceId+"&&subserviceid="+dynamicSubServiceId,
 		function(data) {
@@ -205,9 +204,14 @@ jQuery(document).ready(function($){
 
 	// Loading Address Data
 	if ($("#customerdetails").length>0) {
-		$( "#datepicker" ).datepicker();
+		var	currentDateTime		= new Date();
+		$( "#datepicker" ).datepicker({
+			minDate: 0
+		});
+
 		var	retrievedLocation		=	localStorage.getItem("currentLocation");
 		$(this).find("input[name='address']").val(retrievedLocation);
+
 		var paymentOption = document.getElementById("paymentoption");
 		$('.loading-background').css("display","none");
 		paymentOption.onclick = function(e) {
@@ -218,9 +222,16 @@ jQuery(document).ready(function($){
 					customerPhone 				=	$("#customerdetails").find("input[name='phone']").val(),
 					customerServiceDate 	=	$("#customerdetails").find("input[name='servicedate']").val(),
 					customerHours 				=	$("#customerdetails").find("#hours").val(),
-					customerMinutes 			=	$("#customerdetails").find("#minutes").val();
+					customerMinutes 			=	$("#customerdetails").find("#minutes").val(),
+					customerTime					=	customerHours+ ":" + customerMinutes;
 
-			if ((customerFullName && customerEmail && customerPhone && customerServiceDate && customerHours && customerMinutes) != "") {
+			var	currentDateTime		= new Date(),
+					currentMonth			= currentDateTime.getMonth()+1,
+					currentDay					= currentDateTime.getDate(),
+					currentTime				= currentDateTime.getHours() + ":" + currentDateTime.getMinutes(),
+					currentDate = (('' + currentMonth).length<2 ? '0' : '') + currentMonth + '/' + (('' + currentDay).length<2 ? '0' : '') + currentDay + '/' + currentDateTime.getFullYear();
+
+			function slotTiming() {
 				// Storing into localStorage
 				localStorage.setItem("fullName",customerFullName),
 				localStorage.setItem("email",customerEmail);
@@ -264,6 +275,41 @@ jQuery(document).ready(function($){
 					})
 					$('.loading-background').css("display","none");
 				});
+			}
+
+			if ((customerFullName && customerEmail && customerPhone && customerServiceDate && customerHours && customerMinutes) != "") {
+				//Checking Date & Time
+				if (customerServiceDate == currentDate) {
+					currentTime	= (currentDateTime.getHours() + 1) + ":" + currentDateTime.getMinutes();
+					if (customerTime > currentTime) {
+						slotTiming();
+					} else {
+						//eventListners
+						document.addEventListener("deviceready", onWrongTime, true);
+						function onWrongTime () {
+							navigator.notification.alert(
+								'Timing Can\'t be less than next 1 Hour',
+								function(){},
+								'JustWash',
+								'OK'
+							);
+						}
+					}
+				} else if(customerServiceDate > currentDate) {
+					currentTime	= currentDateTime.getHours() + ":" + currentDateTime.getMinutes();
+					slotTiming();
+				} else {
+					//eventListners
+					document.addEventListener("deviceready", onWrongDate, true);
+					function onWrongDate () {
+						navigator.notification.alert(
+							'Date cannot be earlier than today',
+							function(){},
+							'JustWash',
+							'OK'
+						);
+					}
+				}
 			} else {
 				//eventListners
 				document.addEventListener("deviceready", onDeviceReady, true);
