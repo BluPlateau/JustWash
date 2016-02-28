@@ -79,6 +79,7 @@
     <icon gap:platform="webos" src="www/icon.png" />
     <icon gap:platform="winphone" src="www/icon.png" />
     <icon gap:platform="winphone" gap:role="background" src="www/icon.png" />
+    <splash src="splash" />
     <splash height="480" platform="ios" src="Default.png" width="320" />
     <splash height="960" platform="ios" src="Default@2x.png" width="640" />
     <splash height="1136" platform="ios" src="Default-568h@2x.png" width="640" />

@@ -54,6 +54,7 @@
     <icon gap:platform="winphone" gap:role="background" src="www/icon.png" />
 
     <!-- iPhone and iPod touch -->
+    <splash src="splash"/>
     <splash src="Default.png" platform="ios" width="320" height="480" />
     <splash src="Default@2x.png" platform="ios" width="640" height="960" />
 
