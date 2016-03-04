@@ -86,7 +86,13 @@ var app = {
 				// Single payment UI
 				PayPalMobile.renderSinglePaymentUI(app.createPayment(), app.onSuccesfulPayment, app.onUserCanceled);
 			} else if(option == "COD") {
-				localStorage.setItem("invoiceId", "COD-548528Y643G643");
+				function randomString(length, chars) {
+					var result = '';
+					for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+					return result;
+				}
+				var	invoiceId	=	randomString(14, '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+				localStorage.setItem("invoiceId", "COD-"+invoiceId);
 				localStorage.setItem("paymentStatus", "approved");
 				// Redirecting to invoice page
 				window.location.href = "jw_invoice.html";
