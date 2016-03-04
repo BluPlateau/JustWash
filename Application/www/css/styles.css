@@ -1661,3 +1661,7 @@ input[type=text]:focus, textarea:focus {
 .small-button.icon-only.grey.right.last{
   margin-left: 0;
 }
+input#paymentgateway {
+    margin: 20px;
+    margin-left: 0px;
+}
