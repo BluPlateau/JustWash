@@ -229,7 +229,10 @@ jQuery(document).ready(function($){
 					currentMonth			= currentDateTime.getMonth()+1,
 					currentDay					= currentDateTime.getDate(),
 					currentTime				= currentDateTime.getHours() + ":" + currentDateTime.getMinutes(),
-					currentDate = (('' + currentMonth).length<2 ? '0' : '') + currentMonth + '/' + (('' + currentDay).length<2 ? '0' : '') + currentDay + '/' + currentDateTime.getFullYear();
+					currentDate				= (('' + currentMonth).length<2 ? '0' : '') + currentMonth + '/' + (('' + currentDay).length<2 ? '0' : '') + currentDay + '/' + currentDateTime.getFullYear();
+
+					//Local Storage for using currentDate globally
+					localStorage.setItem("currentDate", currentDate);
 
 			function slotTiming() {
 				// Storing into localStorage
@@ -334,6 +337,7 @@ jQuery(document).ready(function($){
 					fullName						=	localStorage.getItem("fullName"),
 					email								=	localStorage.getItem("email"),
 					phone							=	localStorage.getItem("phone"),
+					invoiceDate				=	localStorage.getItem("currentDate"),
 					serviceDate				=	localStorage.getItem("servicedate"),
 					hours								=	localStorage.getItem("hours"),
 					minutes						=	localStorage.getItem("minutes"),
@@ -341,7 +345,36 @@ jQuery(document).ready(function($){
 					paidAmount				=	localStorage.getItem("dynamicSubServicePrice"),
 					serviceName				=	localStorage.getItem("dynamicCarName") + " " + localStorage.getItem("dynamicSubServiceName") + " " + localStorage.getItem("dynamicServiceName");
 
-			$.getJSON(apiUrl+"?email="+email+"&invoice_id="+invoiceId+"&date="+serviceDate+"&time="+hours+":"+minutes+"&car_type="+localStorage.getItem("dynamicCarName")+"&sub_service_name="+localStorage.getItem("dynamicSubServiceName")+"&service_name="+localStorage.getItem("dynamicServiceName")+"&price="+paidAmount+"&add_invoice=add+invoice");
+			$.getJSON(apiUrl+"?email="+email+"&invoice_id="+invoiceId+"&date="+serviceDate+"&time="+hours+":"+minutes+"&address="+retrievedLocation+"&phone="+phone+"&car_type="+localStorage.getItem("dynamicCarName")+"&sub_service_name="+localStorage.getItem("dynamicSubServiceName")+"&service_name="+localStorage.getItem("dynamicServiceName")+"&price="+paidAmount+"&add_invoice=add+invoice",
+			function (data) {
+				$.each(data, function(i,item){
+					if (item.error	== "added sucessfully") {
+						//Condition for invoice
+						localStorage.setItem("error","added");
+						//eventListners
+						document.addEventListener("deviceready", onComplete, true);
+						function onComplete() {
+							navigator.notification.alert(
+								'Booking Success',
+								function(){},
+								'JustWash',
+								'OK'
+							);
+						}
+					} else {
+						//eventListners
+						document.addEventListener("deviceready", onError, true);
+						function onError() {
+							navigator.notification.alert(
+								'Booking Failed. Please retry',
+								function(){},
+								'JustWash',
+								'OK'
+							);
+						}
+					}
+				});
+			});
 			//	Displaying Values
 			$(this).find("input[name='address']").val(retrievedLocation);
 			$(this).find("input[name='fullname']").val(fullName);
@@ -352,19 +385,11 @@ jQuery(document).ready(function($){
 			$(this).find("input[name='hours']").val(hours);
 			$(this).find("input[name='minutes']").val(minutes);
 			$(this).find("input[name='invoiceid']").val(invoiceId);
+			$(this).find("input[name='invoicedate']").val(invoiceDate);
 			$(this).find("input[name='paidamount']").val(paidAmount);
+			$('.loading-background').css("display","none");
 		} else {
-			//eventListners
-			// document.addEventListener("deviceready", onDeviceReady, true);
-			// function onDeviceReady() {
-			// 	navigator.notification.alert(
-			// 		'Booking Failed',
-			// 		function(){},
-			// 		'JustWash',
-			// 		'OK'
-			// 	);
-			// }
+			
 		}
-		$('.loading-background').css("display","none");
 	}
 });
