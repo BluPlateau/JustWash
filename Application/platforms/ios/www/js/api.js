@@ -281,36 +281,71 @@ jQuery(document).ready(function($){
 			}
 
 			if ((customerFullName && customerEmail && customerPhone && customerServiceDate && customerHours && customerMinutes) != "") {
-				//Checking Date & Time
-				if (customerServiceDate == currentDate) {
-					currentTime	= (currentDateTime.getHours() + 1) + ":" + currentDateTime.getMinutes();
-					if (customerTime > currentTime) {
-						slotTiming();
-					} else {
-						//eventListners
-						document.addEventListener("deviceready", onWrongTime, true);
-						function onWrongTime () {
+				//Email format Check
+				if(/^[a-zA-Z0-9@.]*$/.test(customerEmail) == false) {
+					document.addEventListener("deviceready",onWrongEmailFormat,true);
+					function onWrongEmailFormat() {
+						navigator.notification.alert(
+							'Incorrect Email format',
+							function(){},
+							'JustWash',
+							'OK'
+						);
+					}
+				} else {
+					if ((customerEmail.match(/@/g) || []).length > 1) {
+						document.addEventListener("deviceready",onTooMuchCount,true);
+						function onTooMuchCount() {
 							navigator.notification.alert(
-								'Timing Can\'t be less than next 1 Hour',
+								'Email cannot have 2 "@" symbols',
 								function(){},
 								'JustWash',
 								'OK'
 							);
 						}
-					}
-				} else if(customerServiceDate > currentDate) {
-					currentTime	= currentDateTime.getHours() + ":" + currentDateTime.getMinutes();
-					slotTiming();
-				} else {
-					//eventListners
-					document.addEventListener("deviceready", onWrongDate, true);
-					function onWrongDate () {
-						navigator.notification.alert(
-							'Date cannot be earlier than today',
-							function(){},
-							'JustWash',
-							'OK'
-						);
+					} else if(customerEmail.slice(-1) === ".") {
+						document.addEventListener("deviceready",onUnexpectedEnd,true);
+						function onUnexpectedEnd() {
+							navigator.notification.alert(
+								'Email cannot end with "."',
+								function(){},
+								'JustWash',
+								'OK'
+							);
+						}
+					} else {
+						//Checking Date & Time
+						if (customerServiceDate == currentDate) {
+							currentTime	= (currentDateTime.getHours() + 1) + ":" + currentDateTime.getMinutes();
+							if (customerTime > currentTime) {
+								slotTiming();
+							} else {
+								//eventListners
+								document.addEventListener("deviceready", onWrongTime, true);
+								function onWrongTime () {
+									navigator.notification.alert(
+										'Timing Can\'t be less than next 1 Hour',
+										function(){},
+										'JustWash',
+										'OK'
+									);
+								}
+							}
+						} else if(customerServiceDate > currentDate) {
+							currentTime	= currentDateTime.getHours() + ":" + currentDateTime.getMinutes();
+							slotTiming();
+						} else {
+							//eventListners
+							document.addEventListener("deviceready", onWrongDate, true);
+							function onWrongDate () {
+								navigator.notification.alert(
+									'Date cannot be earlier than today',
+									function(){},
+									'JustWash',
+									'OK'
+								);
+							}
+						}
 					}
 				}
 			} else {
