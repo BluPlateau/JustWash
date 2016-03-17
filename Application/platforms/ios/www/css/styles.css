@@ -62,9 +62,7 @@ h6 {
 }
 p {
   margin-bottom: 5px;
-  padding-right: 20px;
-  padding-left: 20px;
-  color: #B5B5B5;
+  color: #151D31;
   font-size: 12px;
   line-height: 1.9em;
 }
@@ -980,10 +978,13 @@ pre.description-new {
 	margin-right: 12px;
 	padding: 7px 16px;
 	border-radius: 2px;
-	background-color: #151D31;
+	background-color: #ff274a;
 	color: white;
 	font-size: 10px;
 	text-decoration: none;
+}
+.small-button:hover {
+  background-color: #797870;
 }
 .small-button.icon-only {
   padding-right: 7px;
@@ -1045,11 +1046,14 @@ pre.description-new {
 .small-button.social.twitter {
   background-color: #4099ff;
 }
+.w15 {
+  width: 15px !important;
+}
 .icon-button {
   display: inline-block;
   overflow-x: hidden;
   overflow-y: hidden;
-  width: 20px;
+  width: 10px;
   height: 15px;
   padding-bottom: 20px;
   float: left;

@@ -97,7 +97,7 @@ jQuery(document).ready(function($){
 				$("#"+logicalService).css("display","block");
 				$("#"+logicalService).find(".service-title").text(service);
 				$("#"+logicalService).find(".service-block").attr("serviceId",serviceId);
-				$("#"+logicalService).find(".description-new").text(description);
+				$("#"+logicalService).find(".description-new").html(description).text();
 				$("#"+logicalService).find(".image-calendar-event >img").attr("src",serviceImage);
 			});
 			$('.loading-mask').addClass('stop-loading');
@@ -131,7 +131,7 @@ jQuery(document).ready(function($){
 				$("#"+logicalSubService).css("display","block");
 				$("#"+logicalSubService).find(".price").text(price);
 				$("#"+logicalSubService).find(".sub-service-title").text(subService);
-				$("#"+logicalSubService).find(".description-new").text(description);
+				$("#"+logicalSubService).find(".description-new").html(description).text(	);
 				$("#"+logicalSubService).find("#book").attr("sub_service_id",subServiceId);
 				$("#"+logicalSubService).find(".image-news > img").attr("src",subServiceImage);
 			});
@@ -192,7 +192,7 @@ jQuery(document).ready(function($){
 			document.addEventListener("deviceready", onDeviceReady, true);
 			function onDeviceReady () {
 				navigator.notification.alert(
-					'We are unable to detect your Location. Please Turn ON Location Services',
+					'We are unable to detect your Location. Please Switch ON Location Services',
 					function(){},
 					'JustWash',
 					'OK'
