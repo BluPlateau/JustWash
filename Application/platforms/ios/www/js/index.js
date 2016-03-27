@@ -39,7 +39,7 @@ var app = {
 	receivedEvent: function(id) {
 		setTimeout(function() {
 		    navigator.splashscreen.hide();
-		}, 5000);
+		}, 3000);
 		// start to initialize PayPalMobile library
 		app.initPaymentUI();
 	},

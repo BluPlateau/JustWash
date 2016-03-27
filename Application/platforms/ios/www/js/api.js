@@ -282,7 +282,7 @@ jQuery(document).ready(function($){
 
 			if ((customerFullName && customerEmail && customerPhone && customerServiceDate && customerHours && customerMinutes) != "") {
 				//Email format Check
-				if(/^[a-zA-Z0-9@.]*$/.test(customerEmail) == false) {
+				if(/^[a-zA-Z0-9@._-]*$/.test(customerEmail) == false) {
 					document.addEventListener("deviceready",onWrongEmailFormat,true);
 					function onWrongEmailFormat() {
 						navigator.notification.alert(
@@ -297,7 +297,7 @@ jQuery(document).ready(function($){
 						document.addEventListener("deviceready",onTooMuchCount,true);
 						function onTooMuchCount() {
 							navigator.notification.alert(
-								'Email cannot have 2 "@" symbols',
+								'Email cannot have multiple "@" symbols',
 								function(){},
 								'JustWash',
 								'OK'
@@ -421,7 +421,7 @@ jQuery(document).ready(function($){
 			$(this).find("input[name='minutes']").val(minutes);
 			$(this).find("input[name='invoiceid']").val(invoiceId);
 			$(this).find("input[name='invoicedate']").val(invoiceDate);
-			$(this).find("input[name='paidamount']").val(paidAmount);
+			$(this).find("input[name='paidamount']").val('<i class="fa fa-inr"></i>' + paidAmount);
 			$('.loading-background').css("display","none");
 		} else {
 			
