@@ -1327,7 +1327,7 @@ pre.description-new {
   overflow-x: hidden;
   overflow-y: hidden;
   width: 50px;
-  height: 28px;
+  height: auto;
   margin-top: 4px;
   float: right;
   border-radius: 16px;
@@ -1668,4 +1668,7 @@ input[type=text]:focus, textarea:focus {
 input#paymentgateway {
     margin: 20px;
     margin-left: 0px;
+}
+img {
+	width: 100%;
 }
