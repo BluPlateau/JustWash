@@ -421,7 +421,7 @@ jQuery(document).ready(function($){
 			$(this).find("input[name='minutes']").val(minutes);
 			$(this).find("input[name='invoiceid']").val(invoiceId);
 			$(this).find("input[name='invoicedate']").val(invoiceDate);
-			$(this).find("input[name='paidamount']").val('<i class="fa fa-inr"></i>' + paidAmount);
+			$(this).find("input[name='paidamount']").val(paidAmount);
 			$('.loading-background').css("display","none");
 		} else {
 			
