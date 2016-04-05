@@ -20,6 +20,14 @@
 jQuery(document).ready(function($){
 	//body
 
+	// Global Variables
+	var reg	= new RegExp(" ","g"); // For Substituting spaces in ID Names
+
+	// Preventing Default Action of a click in "li"
+	$(document).on("click", "li >a", function(e) {
+		e.preventDefault();
+	});
+
 	/* Required Plugins Intialization */
 
 	// EventListner
@@ -39,17 +47,18 @@ jQuery(document).ready(function($){
 		}
 	}
 
+	document.addEventListener("backbutton", function(e){
+		if($.mobile.activePage.is('#invoicedetails')){
+			navigator.app.exitApp();
+		}
+		else {
+			navigator.app.backHistory();
+		}
+	}, false);
+
 	//API
 	var apiUrl				=	"http://justwashapi.gsprasad.com",
 			uploadUrl		=	"http://uploads.justwash.gsprasad.com"
-
-	// Global Variables
-	var reg	= new RegExp(" ","g"); // For Substituting spaces in ID Names
-
-	// Preventing Default Action of a click in "li"
-	$(document).on("click", "li >a", function(e) {
-		e.preventDefault();
-	})
 	
 	// Loading Cars Data
 	if ($("#cars").length > 0) {
@@ -58,8 +67,8 @@ jQuery(document).ready(function($){
 			$.each(data, function(i,item) {
 				reg;
 				var	carId			=	item.value1,
-						carName	=	item.value2;
-						carImage	=	uploadUrl + "/admin_cars/car_uploads/" + item.value3;
+						carName	=	item.value2,
+						carImage	=	uploadUrl + "/admin_cars/car_uploads/" + item.value3,
 						logicalCarName	=	carName.replace(reg,"");
 				// Populating the "Cars items" list
 				$("#cars").clone().attr("id",logicalCarName).appendTo(".list-events");
@@ -217,7 +226,9 @@ jQuery(document).ready(function($){
 		paymentOption.onclick = function(e) {
 			// parameters for invoicing
 			// Collecting Values
-			var	customerFullName 		=	$("#customerdetails").find("input[name='fullname']").val(),
+					// Can't use the "retrievedLocation", as the user have the capability to change it even after retreiving the location
+			var	customerLocation			=	$("#customerdetails").find("input[name='address']").val(),
+					customerFullName 		=	$("#customerdetails").find("input[name='fullname']").val(),
 					customerEmail 				=	$("#customerdetails").find("input[name='email']").val(),
 					customerPhone 				=	$("#customerdetails").find("input[name='phone']").val(),
 					customerServiceDate 	=	$("#customerdetails").find("input[name='servicedate']").val(),
@@ -236,6 +247,7 @@ jQuery(document).ready(function($){
 
 			function slotTiming() {
 				// Storing into localStorage
+				localStorage.setItem("location",customerLocation),
 				localStorage.setItem("fullName",customerFullName),
 				localStorage.setItem("email",customerEmail);
 				localStorage.setItem("phone",customerPhone);
@@ -293,7 +305,17 @@ jQuery(document).ready(function($){
 						);
 					}
 				} else {
-					if ((customerEmail.match(/@/g) || []).length > 1) {
+					if ((customerEmail.indexOf("@") === -1) || ((customerEmail.indexOf(".") === -1))) {
+						document.addEventListener("deviceready",onMissingCount,true);
+						function onMissingCount() {
+							navigator.notification.alert(
+								'Email should have "@" & "." symbol',
+								function(){},
+								'JustWash',
+								'OK'
+							);
+						}
+					} else if ((customerEmail.match(/@/g) || []).length > 1) {
 						document.addEventListener("deviceready",onTooMuchCount,true);
 						function onTooMuchCount() {
 							navigator.notification.alert(
@@ -303,11 +325,11 @@ jQuery(document).ready(function($){
 								'OK'
 							);
 						}
-					} else if(customerEmail.slice(-1) === ".") {
+					} else if((customerEmail.slice(-1) === ".") || (customerEmail.slice(-1) === "@")) {
 						document.addEventListener("deviceready",onUnexpectedEnd,true);
 						function onUnexpectedEnd() {
 							navigator.notification.alert(
-								'Email cannot end with "."',
+								'Email cannot end with "." or with "@"',
 								function(){},
 								'JustWash',
 								'OK'
@@ -368,19 +390,19 @@ jQuery(document).ready(function($){
 		var	paymentStatus	=	localStorage.getItem("paymentStatus");
 		if (paymentStatus == "approved") {
 			// Collecting all the session variables required
-			var	retrievedLocation		=	localStorage.getItem("currentLocation"),
-					fullName						=	localStorage.getItem("fullName"),
-					email								=	localStorage.getItem("email"),
-					phone							=	localStorage.getItem("phone"),
-					invoiceDate				=	localStorage.getItem("currentDate"),
-					serviceDate				=	localStorage.getItem("servicedate"),
-					hours								=	localStorage.getItem("hours"),
-					minutes						=	localStorage.getItem("minutes"),
-					invoiceId						=	localStorage.getItem("invoiceId"),
-					paidAmount				=	localStorage.getItem("dynamicSubServicePrice"),
-					serviceName				=	localStorage.getItem("dynamicCarName") + " " + localStorage.getItem("dynamicSubServiceName") + " " + localStorage.getItem("dynamicServiceName");
+			var	location			=	localStorage.getItem("location"),
+					fullName			=	localStorage.getItem("fullName"),
+					email					=	localStorage.getItem("email"),
+					phone				=	localStorage.getItem("phone"),
+					invoiceDate	=	localStorage.getItem("currentDate"),
+					serviceDate	=	localStorage.getItem("servicedate"),
+					hours					=	localStorage.getItem("hours"),
+					minutes			=	localStorage.getItem("minutes"),
+					invoiceId			=	localStorage.getItem("invoiceId"),
+					paidAmount	=	localStorage.getItem("dynamicSubServicePrice"),
+					serviceName	=	localStorage.getItem("dynamicCarName") + " " + localStorage.getItem("dynamicSubServiceName") + " " + localStorage.getItem("dynamicServiceName");
 
-			$.getJSON(apiUrl+"?email="+email+"&invoice_id="+invoiceId+"&date="+serviceDate+"&time="+hours+":"+minutes+"&address="+retrievedLocation+"&phone="+phone+"&car_type="+localStorage.getItem("dynamicCarName")+"&sub_service_name="+localStorage.getItem("dynamicSubServiceName")+"&service_name="+localStorage.getItem("dynamicServiceName")+"&price="+paidAmount+"&add_invoice=add+invoice",
+			$.getJSON(apiUrl+"?email="+email+"&invoice_id="+invoiceId+"&date="+serviceDate+"&time="+hours+":"+minutes+"&address="+location+"&phone="+phone+"&car_type="+localStorage.getItem("dynamicCarName")+"&sub_service_name="+localStorage.getItem("dynamicSubServiceName")+"&service_name="+localStorage.getItem("dynamicServiceName")+"&price="+paidAmount+"&add_invoice=add+invoice",
 			function (data) {
 				$.each(data, function(i,item){
 					if (item.error	== "added sucessfully") {
@@ -411,7 +433,7 @@ jQuery(document).ready(function($){
 				});
 			});
 			//	Displaying Values
-			$(this).find("input[name='address']").val(retrievedLocation);
+			$(this).find("input[name='address']").val(location);
 			$(this).find("input[name='fullname']").val(fullName);
 			$(this).find("input[name='email']").val(email);
 			$(this).find("input[name='phone']").val(phone);
@@ -422,6 +444,7 @@ jQuery(document).ready(function($){
 			$(this).find("input[name='invoiceid']").val(invoiceId);
 			$(this).find("input[name='invoicedate']").val(invoiceDate);
 			$(this).find("input[name='paidamount']").val(paidAmount);
+			localStorage.setItem("sessionStatus","deactive");
 			$('.loading-background').css("display","none");
 		} else {
 			
