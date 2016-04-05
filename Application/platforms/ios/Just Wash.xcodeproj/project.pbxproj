@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		101B284DC20E4A5489679010 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B43EB0D5E72F4B37BD93E429 /* SafariServices.framework */; };
 		1524A5DA9419463CA1F0E857 /* libPayPalMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E89A5648064BA49B8C46FF /* libPayPalMobile.a */; };
